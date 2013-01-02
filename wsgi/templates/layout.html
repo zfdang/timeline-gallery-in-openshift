@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<HTML lang="utf-8">
+<HEAD>
+    <meta charset="utf-8">
+    <title>{% block title %} Index {% endblock %}</title>        
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"  media="screen">
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/static/ico/favicon.ico">        
+    {% block extra_head_block %} {% endblock %}
+</head>
+<body>
+    <div class="masthead">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <a class="brand" href="/#0"><i class="icon-home"></i>{{ title }}</a>
+            <form class="navbar-search pull-right"  action="https://www.google.com/search"> 
+              <input type="text" class="search-query" placeholder="{{_("Search")}}" name="q">
+              <input type="hidden"  name="sitesearch" value="{{ host }}">
+            </form>                
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="langs">
+                        <i class="icon-globe"></i>Lang<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for lang in langs %}
+                          <li><a href="/locale?value={{ lang.locale }}">{{ lang.description}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="/admin/"><i class="icon-tasks"></i>{{ _("Admin") }}</a></li>
+            </ul>
+          </div>
+        </div><!-- navbar -->
+    </div><!-- masthead -->
+    {% block main_content %} {% endblock %}
+    <div id="footer">
+        <div class="pull-right">
+            <p class="muted credit">&copy; zfdang 2012. {{ _("Powered by ") }}<a href="https://code.google.com/p/tlphoto/" target="_blank">TLPhoto</a>.</p>
+          </div>
+    </div>
+    <!-- loading js script at the end -->
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+    {% block extra_scripts %} {% endblock %}
+    <!-- load other js codes -->
+</body>
+</HTML>

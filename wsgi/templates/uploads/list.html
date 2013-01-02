@@ -1,0 +1,12 @@
+{% from 'pagination.html' import render_pagination %}
+
+{% for photo in photos %}
+    {{ _("File") }}: <A href="{{ photo.url }}">{{ photo.filename }}</a>, {{ _("Created at") }}: {{ photo.created_at }} <BR/>
+{% endfor %}
+
+{{ render_pagination(pagination) }}
+
+<br>
+<br>
+<br>
+<a href="{{ upload_link }}">Upload File</a>
