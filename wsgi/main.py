@@ -1,4 +1,4 @@
-from flask import Flask, request, url_for
+from flask import Flask, request, url_for, render_template
 import pages
 import admin
 import index
@@ -29,6 +29,16 @@ app.jinja_env.globals['url_for_other_page'] = url_for_other_page
 @app.teardown_request
 def shutdown_session(exception=None):
     db_session.remove()
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('500.html'), 500
 
 
 if __name__ == '__main__':

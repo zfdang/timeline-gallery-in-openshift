@@ -3,12 +3,8 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
 
-# OPENSHIFT_MYSQL_DB_HOST="127.6.27.1"
-# OPENSHIFT_MYSQL_DB_LOG_DIR="/var/lib/openshift/d547df8d6cb84e10bc9c163994cac697//mysql-5.1/log"
-# OPENSHIFT_MYSQL_DB_PASSWORD="6bbgzDwESXPL"
-# OPENSHIFT_MYSQL_DB_PORT="3306"
 # OPENSHIFT_MYSQL_DB_URL="mysql://admin:6bbgzDwESXPL@127.6.27.1:3306/"
-# OPENSHIFT_MYSQL_DB_USERNAME="admin"
+# OPENSHIFT_APP_NAME="demo"
 if 'OPENSHIFT_APP_UUID' in os.environ:
     database_url = '%s%s' % (os.environ['OPENSHIFT_MYSQL_DB_URL'], os.environ['OPENSHIFT_APP_NAME'])
 else:

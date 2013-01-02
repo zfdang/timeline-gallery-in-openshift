@@ -1,5 +1,5 @@
 import os
-from flask import request, redirect, url_for, current_app
+from flask import request, redirect, url_for, current_app, abort
 from flask import Blueprint, render_template
 from urllib import quote
 from werkzeug import secure_filename
@@ -57,6 +57,8 @@ def list_file(page):
 def show_file(filename):
     _filename = secure_filename(quote(filename.encode("UTF-8")))
     current_app.logger.info("filename original=%s, decoded=%s" % (filename, _filename))
+    if not os.path.exists(os.path.join(UPLOAD_FOLDER, _filename)):
+        abort(404)
     return send_from_directory(UPLOAD_FOLDER, _filename, as_attachment=False)
 
 
