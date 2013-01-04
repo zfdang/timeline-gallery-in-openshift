@@ -1,0 +1,9 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block main_content %}
+    <h1>{{ _("Upload new File") }}</h1>
+    <form action="{{ action_url }}" method="post" enctype="multipart/form-data">
+      <p><input type="file" name="file">
+         <input type="submit" value="Upload">
+    </form>
+{% endblock %}

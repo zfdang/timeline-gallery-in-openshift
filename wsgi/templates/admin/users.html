@@ -1,3 +1,8 @@
-{% for user in users %}
-    {{ user.name }} : {{ user.email }}
-{% endfor %}
+{% extends "admin/admin_layout.html" %}
+
+{% block main_content %}
+    {% for user in users %}
+        {{ user.name }} : {{ user.email }}
+    {% endfor %}
+{% endblock %}
+

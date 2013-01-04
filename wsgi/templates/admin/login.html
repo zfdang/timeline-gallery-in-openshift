@@ -1,0 +1,26 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block main_content %}
+<div id="main_content">
+    <form action="{{ url_for("login.authentication") }}" method="post" class="form-horizontal">
+        <fieldset/>
+        <div class="control-group">
+            <label class="control-label" for="username">{{_("Username")}}</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" name="username"  placeholder="Username">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password">{{_("Password")}}</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" name="password"  placeholder="Password">
+            </div>
+        </div>
+        <div class="form-actions">
+            <p><input type='hidden' name='next' value="{{ next }}">
+            <button type="submit" class="btn btn-primary">{{_("Login")}}</button>
+        </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

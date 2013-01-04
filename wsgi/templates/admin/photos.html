@@ -1,0 +1,36 @@
+{% extends "admin/admin_layout.html" %}
+
+{% from 'admin/pagination.html' import render_pagination %}
+
+{% block main_content %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Size</th>
+      <th>Width</th>
+      <th>Height</th>
+      <th>Created At</th>
+      <th>Operations</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for photo in photos %}
+    <tr>
+      <td><A href="{{ photo.url }}">{{ photo.filename }}</a></td>
+      <td>{{ photo.size }} </td>
+      <td>{{ photo.width  }} </td>
+      <td>{{ photo.height }} </td>
+      <td>{{ photo.created_at }} </td>
+      <td></td>
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
+{{ render_pagination(pagination) }}
+
+<br/>
+{% endblock %}

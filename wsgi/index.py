@@ -1,30 +1,22 @@
-from flask import Blueprint, render_template, abort, url_for, jsonify, current_app
-from jinja2 import TemplateNotFound
+# -*- coding: UTF-8 -*-
+from flask import Blueprint, render_template, url_for
 from models import Photo
 from timeline import Timeline
 
 
-index = Blueprint('index', __name__)
+bp = Blueprint('index', __name__)
 
 
-@index.route('/')
-def show():
-    try:
-        return render_template('index.html', username='zfdang', age="32")
-    except TemplateNotFound:
-        abort(404)
+@bp.route('/')
+def index():
+    return render_template('index.html', username='zfdang', age="32")
 
 
-@index.route("timeline")
+@bp.route("timeline")
 def timeline_json():
     tl = Timeline("Chinese PRC", "this is the text", '2011,9,30')
 
     photos = Photo.query.all()
     for photo in photos:
-        tl.add_date('2011,10,1', photo.filename, url_for("uploads.show_file", filename=photo.filename))
+        tl.add_date('2011,10,1', photo.filename, url_for("admin.show_photo", filename=photo.filename))
     return tl.get_json()
-
-
-if __name__ == "__main__":
-    import os
-    print os.path.dirname(__file__)

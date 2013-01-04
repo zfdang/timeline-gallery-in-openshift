@@ -24,7 +24,7 @@ class Photo(Base):
     saved_filename = Column(String(180, convert_unicode=True), unique=True)
     url = Column(String(180, convert_unicode=True))
     size = Column(Integer)
-    height = Column(Integer)
+    width = Column(Integer)
     height = Column(Integer)
     created_at = Column(TIMESTAMP, server_default=text('NOW()'))
 

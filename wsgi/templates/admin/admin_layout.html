@@ -10,6 +10,7 @@
     {% block extra_head_block %} {% endblock %}
 </head>
 <body>
+<div class="container">    
     <div class="masthead">
         <div class="navbar">
           <div class="navbar-inner">
@@ -19,35 +20,39 @@
               <input type="hidden"  name="sitesearch" value="{{ host }}">
             </form>                
             <ul class="nav pull-right">
+                <li><a href="{{ url_for("admin.init") }}">{{ _("Init") }}</a></li>
+                <li><a href="{{ url_for("admin.list_photos") }}">{{ _("Photos") }}</a></li>
+                <li><a href="{{ url_for("uploads.upload_file") }}">{{ _("Upload Photo") }}</a></li>
+                <li><a href="{{ url_for("admin.list_users") }}">{{ _("Users") }}</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="langs">
                         <i class="icon-globe"></i>Lang<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         {% for lang in langs %}
-                          <li><a href="{{ url_for("langs.set_lang", lang_code=lang.locale, url=request.url|quoteplus) }}">{{ lang.description}}</a></li>
+                          <li><a href="{{ url_for("langs.set_lang", lang_code=lang.locale, url=request.url|quoteplus)}}">{{ lang.description}}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
-                <li><a href="{{ url_for("admin.index") }}"><i class="icon-tasks"></i>{{ _("Admin") }}</a></li>
+
             </ul>
           </div>
         </div><!-- navbar -->
     </div><!-- masthead -->
 
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-<div class="alert alert-info">
-    <a class="close" data-dismiss="alert">&times;</a>
-    <ul>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-</div>
-  {% endif %}
-{% endwith %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+    <div class="alert alert-info">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+      {% endif %}
+    {% endwith %}
 
 
     {% block main_content %} {% endblock %}
@@ -61,7 +66,10 @@
     <!-- loading js script at the end -->
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
-    {% block extra_scripts %} {% endblock %}
+
     <!-- load other js codes -->
+    {% block extra_scripts %} {% endblock %}
+
+</div> <!-- container -->
 </body>
 </HTML>
