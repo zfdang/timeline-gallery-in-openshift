@@ -14,7 +14,7 @@ def initialize(database_url):
     global engine
     global db_session
     global Base
-    engine = create_engine(database_url, encoding='UTF-8', echo=False)
+    engine = create_engine(database_url, encoding='UTF-8', echo=True)
     db_session = scoped_session(sessionmaker(autocommit=False,
                                              autoflush=False,
                                              bind=engine))
