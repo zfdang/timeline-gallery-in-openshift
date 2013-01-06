@@ -86,7 +86,8 @@ def list_photos(page):
 @bp.route("/users")
 @login_required
 def list_users():
-    return render_template("admin/users.html")
+    users = User.query.all()
+    return render_template("admin/users.html", users=users)
 
 
 @bp.route('/photo/<filename>')

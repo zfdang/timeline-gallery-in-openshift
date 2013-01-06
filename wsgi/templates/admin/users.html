@@ -1,8 +1,26 @@
 {% extends "admin/admin_layout.html" %}
 
 {% block main_content %}
-    {% for user in users %}
-        {{ user.name }} : {{ user.email }}
-    {% endfor %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }} </td>
+      <td>{{ user.email  }} </td>
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
+
 {% endblock %}
 
