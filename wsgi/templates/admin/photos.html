@@ -2,6 +2,15 @@
 
 {% from 'admin/pagination.html' import render_pagination %}
 
+{% block title %}
+  {{ _("List of Photos") }}
+{% endblock %}
+
+{% block extra_head_block %}
+<link rel="stylesheet" href="/static/big/css/bootstrap-image-gallery.min.css">
+{% endblock %}
+
+
 {% block main_content %}
 
 <table class="table table-striped">
@@ -15,11 +24,11 @@
       <th>Operations</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody data-toggle="modal-gallery" data-target="#modal-gallery">
 
 {% for photo in photos %}
     <tr>
-      <td><A href="{{ photo.url }}">{{ photo.filename }}</a></td>
+      <td><A href="{{ photo.url }}" data-gallery="gallery" title="{{ photo.filename }}">{{ photo.filename }}</a></td>
       <td>{{ photo.size }} </td>
       <td>{{ photo.width  }} </td>
       <td>{{ photo.height }} </td>
@@ -31,6 +40,38 @@
   </tbody>
 </table>
 {{ render_pagination(pagination) }}
-
 <br/>
+
+<!-- modal-gallery is the modal dialog used for the image gallery -->
+<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
+    <div class="modal-footer">
+        <a class="btn modal-download" target="_blank">
+            <i class="icon-download"></i>
+            <span>Download</span>
+        </a>
+        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000">
+            <i class="icon-play icon-white"></i>
+            <span>Slideshow</span>
+        </a>
+        <a class="btn btn-info modal-prev">
+            <i class="icon-arrow-left icon-white"></i>
+            <span>Previous</span>
+        </a>
+        <a class="btn btn-primary modal-next">
+            <span>Next</span>
+            <i class="icon-arrow-right icon-white"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+<script src="/static/big/js/bootstrap-image-gallery.min.js"></script>
 {% endblock %}

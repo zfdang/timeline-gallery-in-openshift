@@ -15,26 +15,17 @@
 $(function () {
     'use strict';
 
+    // https://github.com/blueimp/jQuery-File-Upload/wiki/API
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
-        //xhrFields: {withCredentials: true},
+        // xhrFields: {withCredentials: true},
+        // use form.action
         // url: '/admin/uploads/'
     });
 
-    // Enable iframe cross-domain access via redirect option:
-    $('#fileupload').fileupload(
-        'option',
-        'redirect',
-        window.location.href.replace(
-            /\/[^\/]*$/,
-            '/cors/result.html?%s'
-        )
-    );
-
     // Demo settings:
     $('#fileupload').fileupload('option', {
-        // url: '//jquery-file-upload.appspot.com/',
         maxFileSize: 5000000,
         // acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         process: [
@@ -55,15 +46,15 @@ $(function () {
     });
 
     // Load existing files:
-    $.ajax({
-        // Uncomment the following to send cross-domain cookies:
-        //xhrFields: {withCredentials: true},
-        url: $('#fileupload').fileupload('option', 'url'),
-        dataType: 'json',
-        context: $('#fileupload')[0]
-    }).done(function (result) {
-        $(this).fileupload('option', 'done')
-            .call(this, null, {result: result});
-    });
+    // $.ajax({
+    //     // Uncomment the following to send cross-domain cookies:
+    //     // xhrFields: {withCredentials: true},
+    //     url: $('#fileupload').fileupload('option', 'url'),
+    //     dataType: 'json',
+    //     context: $('#fileupload')[0]
+    // }).done(function (result) {
+    //     $(this).fileupload('option', 'done')
+    //         .call(this, null, {result: result});
+    // });
 
 });
