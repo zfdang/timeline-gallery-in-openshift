@@ -1,5 +1,5 @@
 from database import Base
-from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey
+from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey, Boolean
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql.expression import text
 # https://www.dlitz.net/software/python-pbkdf2/
@@ -43,12 +43,20 @@ class Photo(Base):
     id = Column(Integer, primary_key=True)
     filename = Column(String(120, convert_unicode=True), unique=True)
     saved_filename = Column(String(180, convert_unicode=True), unique=True)
-    url = Column(String(180, convert_unicode=True))
+    # for timeline photos
+    headline = Column(String(256))
+    photo_text = Column(String(1024))
+    start_date = Column(String(12))
+    end_date = Column(String(12))
+    # image info
     size = Column(Integer)
     width = Column(Integer)
     height = Column(Integer)
     created_at = Column(TIMESTAMP, server_default=text('NOW()'))
+    # upload user info
     user_id = Column(Integer, ForeignKey('users.id'))
+    # global visibility
+    visibility = Column(Boolean)
 
     def __init__(self, filename=None, saved_filename=None):
         self.filename = filename
@@ -56,3 +64,12 @@ class Photo(Base):
 
     def __repr__(self):
         return '<Photo %r>' % (self.filename)
+
+
+class Setting(Base):
+    __tablename__ = "setting"
+    id = Column(Integer, primary_key=True)
+    host = Column(String(256))
+    headline = Column(String(256))
+    setting_text = Column(String(1024))
+    start_date = Column(String(12))

@@ -17,10 +17,11 @@
   <thead>
     <tr>
       <th>Filename</th>
-      <th>Size</th>
-      <th>Width</th>
-      <th>Height</th>
-      <th>Created At</th>
+      <th>Headline</th>
+      <th>Text</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Visibility</th>
       <th>Operations</th>
     </tr>
   </thead>
@@ -29,11 +30,26 @@
 {% for photo in photos %}
     <tr>
       <td><A href="{{ photo.url }}" data-gallery="gallery" title="{{ photo.filename }}">{{ photo.filename }}</a></td>
-      <td>{{ photo.size }} </td>
-      <td>{{ photo.width  }} </td>
-      <td>{{ photo.height }} </td>
-      <td>{{ photo.created_at }} </td>
-      <td></td>
+      <td>{{ photo.headline }} </td>
+      <td>{{ photo.photo_text  }} </td>
+      <td>{{ photo.start_date }} </td>
+      <td>{{ photo.end_date }} </td>
+      <td id="public">
+          {% if photo.visibility %}
+              <i class="icon-ok"></i>
+          {% else %}
+              <i class="icon-remove"></i>
+          {% endif %}
+      </td>
+      <td>
+        <div class="btn-group">
+          <a class="btn btn-mini btn-info" onClick="editPhoto({{ photo.id }})">Edit</a>
+          <a class="btn btn-mini btn-info" onClick="togglePhoto({{ photo.id }})">
+            {% if photo.visibility %} Hide {% else %} Show {% endif %}
+          </a>
+          <a class="btn btn-mini btn-danger" onClick="deletePhoto({{ photo.id }})">Delete</a>
+        </div>
+      </td>
     </tr>
 {% endfor %}
 
