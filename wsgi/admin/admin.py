@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from flask import Blueprint, render_template, abort, url_for, session, current_app, flash
+from flask import Blueprint, render_template, abort, url_for, session, current_app, flash, request
 from flask import send_from_directory
 from database import init_db, db_session
 from models import Photo, User
@@ -75,16 +75,15 @@ def show_log(type):
     if 'OPENSHIFT_APP_UUID' in os.environ:
         # access_log-20130102-000000-EST
         # error_log-20130102-000000-ES
+        n = request.args.get("n", 100)
         folder = os.environ['OPENSHIFT_PYTHON_LOG_DIR']
         if type == "access":
             logfile = os.popen("ls -t %saccess_log* | head -n1" % folder).read()
         else:
             logfile = os.popen("ls -t %serror_log* | head -n1" % folder).read()
         logfile = logfile[:-1]
-        with open(logfile) as fin:
-            fin.seek(100, os.SEEK_END)
-            logs = fin.read()
-            return logs
+        contents = os.popen("tail -n %d %s" % (n, logfile)).read()
+        return logfile + "\n\n\n" + contents
     else:
         return "Not in OpenShift Environment"
 
