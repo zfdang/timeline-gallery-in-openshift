@@ -69,7 +69,8 @@ def init():
     return render_template("admin/init.html")
 
 
-@bp.route("/log/<type>", defaults={'type': "error"})
+@bp.route("/log/", defaults={'type': "error"})
+@bp.route("/log/<type>")
 def show_log(type):
     if 'OPENSHIFT_APP_UUID' in os.environ:
         # access_log-20130102-000000-EST
