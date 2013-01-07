@@ -88,9 +88,3 @@ def show_log(type):
     else:
         return "Not in OpenShift Environment"
 
-
-@bp.route("/users")
-@login_required
-def list_users():
-    users = User.query.all()
-    return render_template("admin/users.html", users=users)

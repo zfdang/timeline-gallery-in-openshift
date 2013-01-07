@@ -22,11 +22,12 @@ def shutdown_session(exception=None):
 # register all blueprints
 import index
 import langs
-from admin import admin, uploads, login, photos
+from admin import admin, uploads, login, photos, users
 app.register_blueprint(index.bp, url_prefix='/')
 app.register_blueprint(langs.bp, url_prefix='/lang')
 app.register_blueprint(admin.bp, url_prefix='/admin')
 app.register_blueprint(photos.bp, url_prefix='/admin/photos')
+app.register_blueprint(users.bp, url_prefix='/admin/users')
 app.register_blueprint(uploads.bp, url_prefix='/admin/uploads')
 app.register_blueprint(login.bp, url_prefix='/admin/login')
 
