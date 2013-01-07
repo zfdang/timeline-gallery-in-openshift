@@ -86,7 +86,7 @@ def show_log(type):
         contents += ("Number = %d" % (int(n))).center(80, "=")
         contents += "<br><br>"
         lines = os.popen("tail -n %d %s" % (int(n), logfile)).read()
-        contents += lines.replace("\n", "<br>")
+        contents += "<br>".join(reversed(lines.split("\n")))
         return contents
     else:
         return "Not in OpenShift Environment"
