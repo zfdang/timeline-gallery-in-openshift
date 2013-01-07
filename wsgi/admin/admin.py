@@ -69,6 +69,25 @@ def init():
     return render_template("admin/init.html")
 
 
+@bp.route("/log/<type>", defaults={'type': "error"})
+def show_log(type):
+    if 'OPENSHIFT_APP_UUID' in os.environ:
+        # access_log-20130102-000000-EST
+        # error_log-20130102-000000-ES
+        folder = os.environ['OPENSHIFT_PYTHON_LOG_DIR']
+        if type == "access":
+            logfile = os.popen("ls -t %s/access_log* | head -n1" % folder).read()
+        else:
+            logfile = os.popen("ls -t %s/error_log* | head -n1" % folder).read()
+
+        with open(logfile) as fin:
+            fin.seek(100, os.SEEK_END)
+            logs = fin.read()
+            return logs
+    else:
+        return "Not in OpenShift Environment"
+
+
 @bp.route("/photos/", defaults={'page': 1})
 @bp.route("/photos/page/<int:page>")
 @login_required
