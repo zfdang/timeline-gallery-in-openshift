@@ -82,8 +82,12 @@ def show_log(type):
         else:
             logfile = os.popen("ls -t %serror_log* | head -n1" % folder).read()
         logfile = logfile[:-1]
-        contents = os.popen("tail -n %d %s" % (int(n), logfile)).read()
-        return logfile + "\n\n\n" + contents
+        contents = logfile + "<br><br>"
+        contents += ("Number = %d" % (int(n))).center(80, "=")
+        contents += "<br><br>"
+        lines = os.popen("tail -n %d %s" % (int(n), logfile)).read()
+        contents += lines.replace("\n", "<br>")
+        return contents
     else:
         return "Not in OpenShift Environment"
 
