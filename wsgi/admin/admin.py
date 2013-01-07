@@ -76,10 +76,10 @@ def show_log(type):
         # error_log-20130102-000000-ES
         folder = os.environ['OPENSHIFT_PYTHON_LOG_DIR']
         if type == "access":
-            logfile = os.popen("ls -t %s/access_log* | head -n1" % folder).read()
+            logfile = os.popen("ls -t %saccess_log* | head -n1" % folder).read()
         else:
-            logfile = os.popen("ls -t %s/error_log* | head -n1" % folder).read()
-
+            logfile = os.popen("ls -t %serror_log* | head -n1" % folder).read()
+        logfile = logfile[:-1]
         with open(logfile) as fin:
             fin.seek(100, os.SEEK_END)
             logs = fin.read()
