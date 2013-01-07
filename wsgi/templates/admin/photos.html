@@ -29,7 +29,7 @@
 
 {% for photo in photos %}
     <tr>
-      <td><A href="{{ photo.url }}" data-gallery="gallery" title="{{ photo.filename }}">{{ photo.filename }}</a></td>
+      <td><A href="{{ url_for("photos.show_photo", filename=photo.filename) }}" data-gallery="gallery" title="{{ photo.filename }}">{{ photo.filename }}</a></td>
       <td>{{ photo.headline }} </td>
       <td>{{ photo.photo_text  }} </td>
       <td>{{ photo.start_date }} </td>

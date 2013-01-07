@@ -18,5 +18,5 @@ def timeline_json():
 
     photos = Photo.query.all()
     for photo in photos:
-        tl.add_date('2011,10,1', photo.filename, url_for("admin.show_photo", filename=photo.filename))
+        tl.add_date('2011,10,1', photo.filename, url_for("photos.show_photo", filename=photo.filename))
     return tl.get_json()

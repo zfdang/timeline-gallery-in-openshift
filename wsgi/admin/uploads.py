@@ -79,8 +79,8 @@ def upload_file():
 
                 result.append({"name": fileobj.filename,
                                "size": filesize,
-                               "url": url_for("admin.show_photo", filename=fileobj.filename),
-                               "thumbnail_url": url_for("admin.show_photo", filename=fileobj.filename),
+                               "url": url_for("photos.show_photo", filename=fileobj.filename),
+                               "thumbnail_url": url_for("photos.show_photo", filename=fileobj.filename),
                                "delete_url": "",
                                "delete_type": "POST"})
             else:
