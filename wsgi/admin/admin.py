@@ -31,38 +31,34 @@ def admin_test():
 
 @bp.route("/init")
 def init():
-    message = ""
+    messages = []
+
     # clear login information in session
     session.pop('username', None)
-    message += "session cleared!<br/>"
+    messages.append("session cleared!")
+
     # init database
     init_db()
-    message += "database initialized!"
+    messages.append("database initialized!")
     # add init data for databases
-    u1 = User(name='dang', email='zfang@freewheel.tv', password='zhengfa')
-    db_session.add(u1)
-    db_session.commit()
-
-    p1 = Photo(filename="test1.jpg", saved_filename="saved_test1.jpg")
-    p1.user_id = u1.id
-    db_session.add(p1)
-
-    p2 = Photo(filename="test2.jpg", saved_filename="saved_test2.jpg")
-    p2.user_id = u1.id
-    db_session.add(p2)
-
-    p3 = Photo(filename="test3.jpg", saved_filename="saved_test3.jpg")
-    db_session.add(p3)
-
-    db_session.commit()
+    user = User.query.filter(User.name == "dang").all()
+    if not user:
+        u1 = User(name='dang', email='zfang@freewheel.tv', password='zhengfa')
+        db_session.add(u1)
+        db_session.commit()
+        messages.append("user 'dang' added!")
+    else:
+        messages.append("user 'dang' exists!")
 
     # init upload folder
     if not os.path.exists(current_app.config['UPLOAD_FOLDER']):
         os.mkdir(current_app.config['UPLOAD_FOLDER'])
-        message += "upload folder created!"
+        messages.append("upload folder created!")
     else:
-        message += "upload folder existed!"
-    flash(message)
+        messages.append("upload folder existed!")
+
+    for message in messages:
+        flash(message)
     return render_template("admin/init.html")
 
 
@@ -87,4 +83,3 @@ def show_log(type):
         return contents
     else:
         return "Not in OpenShift Environment"
-
