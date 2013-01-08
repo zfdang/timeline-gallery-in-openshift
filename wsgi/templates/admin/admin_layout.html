@@ -21,9 +21,10 @@
             </form>                
             <ul class="nav pull-right">
                 <li><a href="{{ url_for("admin.init") }}">{{ _("Init") }}</a></li>
-                <li><a href="{{ url_for("photos.list_photos") }}">{{ _("Photos") }}</a></li>
-                <li><a href="{{ url_for("uploads.upload_file") }}">{{ _("Upload Photo") }}</a></li>
-                <li><a href="{{ url_for("users.list_users") }}">{{ _("Users") }}</a></li>
+                <li><a href="{{ url_for("photos.index") }}">{{ _("Photos") }}</a></li>
+                <li><a href="{{ url_for("uploads.index") }}">{{ _("Uploads") }}</a></li>
+                <li><a href="{{ url_for("users.index") }}">{{ _("Users") }}</a></li>
+                <li><a href="{{ url_for("settings.index") }}">{{ _("Settings") }}</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="langs">
                         <i class="icon-globe"></i>Lang<b class="caret"></b>
@@ -40,7 +41,6 @@
         </div><!-- navbar -->
     </div><!-- masthead -->
 
-
     {% with messages = get_flashed_messages() %}
       {% if messages %}
     <div class="alert alert-info">
@@ -54,9 +54,7 @@
       {% endif %}
     {% endwith %}
 
-
     {% block main_content %} {% endblock %}
-
 
     <div id="footer">
         <div class="pull-right">

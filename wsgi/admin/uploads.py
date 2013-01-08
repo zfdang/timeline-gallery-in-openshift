@@ -43,10 +43,10 @@ def get_file_size(file):
 
 @bp.route('/', methods=['GET', 'POST'])
 @login_required
-def upload_file():
+def index():
     current_app.logger.info("upload_file, method = %s, folder=%s", request.method, current_app.config['UPLOAD_FOLDER'])
     if request.method == "GET":
-        return render_template('admin/uploads.html', action_url=url_for(".upload_file"))
+        return render_template('admin/uploads.html')
     elif request.method == "POST":
         #generating json response array
         result = []

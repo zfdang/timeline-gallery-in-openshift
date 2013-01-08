@@ -1,0 +1,52 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block title %}{{ ("Photos Management") }}{% endblock %}
+
+{% block extra_head_block %}
+<link href="/static/datepicker/css/datepicker.css" rel="stylesheet">
+{% endblock %}
+
+{% block main_content %}
+<form id="setting" class="form-horizontal" action="{{  url_for("settings.index") }}" method="post">
+    <fieldset>
+        <legend>{{ _("Timeline Settings") }}:</legend>
+        <div class="control-group">
+            <label class="control-label" for="host">{{ _("Host") }}</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id='host' name="host" value="{{ setting.host }}" placeholder="Required">
+                <p class="help-block">{{ _("URL for this website, without HTTP(s)://") }}</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="headline">{{ _("Headline") }}</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id='headline' name="headline" value="{{ setting.headline }}" placeholder="Required">
+                <p class="help-block">{{ _("Headline for timeline") }}</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="text">{{ _("Text") }}</label>
+            <div class="controls">
+                <textarea class="input-xlarge" id="text" rows="3" name="text" placeholder="Optional">{{ setting.setting_text }}</textarea>
+            </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="start_date">{{ _("Start Date") }}</label>
+          <div class="date controls" id="start_date" data-date="" data-date-format="yyyy-mm-dd">
+            <input class="span2" size="16" type="text" id="start_date" name="start_date" value="{{ setting.start_date }}" readonly>
+            <span class="add-on"><i class="icon-calendar"></i></span>
+          </div>
+        </div>
+        <div class="form-actions">
+            <input type="hidden" class="" name="setting_id" id="setting_id" value="{{ setting.id }}">
+            <button type="submit" class="btn btn-primary" id="bt_submit">{{ _("Update") }}</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
+
+
+{% block extra_scripts %}
+<script type="text/javascript" src="/static/datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/static/js/settings.js"></script>
+{% endblock %}

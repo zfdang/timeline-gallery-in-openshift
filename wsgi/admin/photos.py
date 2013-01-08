@@ -13,7 +13,7 @@ bp = Blueprint('photos', __name__)
 @bp.route("/", defaults={'page': 1})
 @bp.route("/page/<int:page>")
 @login_required
-def list_photos(page):
+def index(page):
     file_per_page = current_app.config.get('FILE_PER_PAGE', 10)
     photos_count = Photo.query.count()
     photos = Photo.query.offset((page - 1) * file_per_page).limit(file_per_page)

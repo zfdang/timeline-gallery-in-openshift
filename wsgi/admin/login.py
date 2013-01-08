@@ -23,8 +23,8 @@ def authentication(next):
         try:
             username = request.form['username']
             password = request.form['password']
-            current_app.logger.info("attempt to login: name=%s, password=%s, ip=%s" % (username, password, request.remote_addr))
             next = request.form['next']
+            current_app.logger.info("attempt to login: name=%s, ip=%s" % (username,  request.remote_addr))
             users = User.query.filter(User.name == username).all()
             if len(users) != 1:
                 raise Failed("invalid username")

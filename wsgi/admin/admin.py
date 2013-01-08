@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from flask import Blueprint, render_template, abort, url_for, session, current_app, flash, request
+from flask import Blueprint, render_template, session, current_app, flash, request
 from database import init_db, db_session
 from models import Photo, User
 import os
