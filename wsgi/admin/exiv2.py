@@ -16,7 +16,17 @@ def get_image_date(saved_filename="", filepath=""):
     if not os.path.exists(imagefile):
         return None
 
-    # read orientation
+    # read Exif.Photo.DateTimeOriginal
+    read_cmd = "%s -g Exif.Photo.DateTimeOriginalprint -Pv %s" % (EXIV2_CMD, imagefile)
+    current_app.logger.info("read_cmd = %s" % (read_cmd))
+    result = os.popen(read_cmd).read().strip()
+    current_app.logger.info("result = %s" % (result))
+    if len(result) > 0:
+        nums = result.replace(" ", ":").split(":")
+        if len(nums) == 6:
+            return "%s-%s-%s" % (nums[0], nums[1], nums[2])
+
+    # read Exif.Image.DateTime
     read_cmd = "%s -g Exif.Image.DateTime print -Pv %s" % (EXIV2_CMD, imagefile)
     current_app.logger.info("read_cmd = %s" % (read_cmd))
     result = os.popen(read_cmd).read().strip()
