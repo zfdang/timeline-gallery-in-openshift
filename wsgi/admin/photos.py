@@ -6,6 +6,7 @@ import os
 from decorators import login_required
 from pagination import Pagination
 from uploads import get_saved_filename
+from exiv2 import reset_orientation, get_exif_info
 
 bp = Blueprint('photos', __name__)
 
@@ -30,3 +31,11 @@ def show_photo(filename):
     if not os.path.exists(os.path.join(current_app.config['UPLOAD_FOLDER'], saved_filename)):
         abort(404)
     return send_from_directory(current_app.config['UPLOAD_FOLDER'], saved_filename, as_attachment=False)
+
+
+@bp.route('/file/<filename>/exif')
+def reset_exif_photo(filename):
+    saved_filename = get_saved_filename(filename)
+    exif_info = get_exif_info(saved_filename=saved_filename, filepath=current_app.config['UPLOAD_FOLDER'])
+    reset_orientation(saved_filename=saved_filename, filepath=current_app.config['UPLOAD_FOLDER'])
+    return exif_info

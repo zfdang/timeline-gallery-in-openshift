@@ -1,5 +1,6 @@
+# -*- coding: UTF-8 -*-
 import os
-from flask import request, redirect, url_for, current_app, flash, session
+from flask import request, url_for, current_app, session
 from flask import Blueprint, render_template
 from urllib import quote
 from werkzeug import secure_filename
@@ -8,7 +9,6 @@ import json
 from database import db_session
 from models import Photo
 from decorators import login_required
-
 
 bp = Blueprint('uploads', __name__)
 ALLOWED_EXTENSIONS = set(['bmp', 'tiff', 'png', 'jpg', 'jpeg', 'gif'])
