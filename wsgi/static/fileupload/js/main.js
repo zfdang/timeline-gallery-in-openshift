@@ -22,11 +22,12 @@ $(function () {
         // xhrFields: {withCredentials: true},
         // use form.action
         // url: '/admin/uploads/'
+        sequentialUploads: true,
     });
 
     // Demo settings:
     $('#fileupload').fileupload('option', {
-        maxFileSize: 5000000,
+        maxFileSize: 10000000,
         // acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         process: [
             {
