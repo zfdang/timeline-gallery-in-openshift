@@ -53,6 +53,7 @@ class Photo(Base):
     width = Column(Integer)
     height = Column(Integer)
     created_at = Column(TIMESTAMP, server_default=text('NOW()'))
+    exif = Column(String(2048))
     # upload user info
     user_id = Column(Integer, ForeignKey('users.id'))
     # global visibility

@@ -9,6 +9,8 @@ import json
 from database import db_session
 from models import Photo
 from decorators import login_required
+from exiv2 import reset_orientation, get_image_exif, get_image_date
+
 
 bp = Blueprint('uploads', __name__)
 ALLOWED_EXTENSIONS = set(['bmp', 'tiff', 'png', 'jpg', 'jpeg', 'gif'])
@@ -73,6 +75,8 @@ def index():
 
                 photo = Photo(filename=fileobj.filename, saved_filename=saved_filename)
                 photo.size = filesize
+                photo.start_date = get_image_date(saved_filename=saved_filename, filepath=current_app.config['UPLOAD_FOLDER'])
+                photo.exif = get_image_exif(saved_filename=saved_filename, filepath=current_app.config['UPLOAD_FOLDER'])
                 photo.user_id = session['user_id']
                 db_session.add(photo)
                 db_session.commit()
