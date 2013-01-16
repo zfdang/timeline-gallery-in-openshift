@@ -49,26 +49,33 @@ def get_image_exif(saved_filename="", filepath=""):
 
     # read orientation
     read_cmd = "%s print -pt %s" % (EXIV2_CMD, imagefile)
-    current_app.logger.info("read_cmd = %s" % (read_cmd))
+    # current_app.logger.info("read_cmd = %s" % (read_cmd))
     result = os.popen(read_cmd).read().strip()
-    current_app.logger.info("result = %s" % (result))
+    # current_app.logger.info("result = %s" % (result))
     return  "<pre>%s</pre>" % (result)
 
 
-def reset_orientation(saved_filename="", filepath=""):
+def save_transposed_imagefiles(saved_filename="", noexif_filename="", thumb_filename="", filepath=""):
     # get saved file
     imagefile = os.path.join(filepath, saved_filename)
     if not os.path.exists(imagefile):
         return False
 
+    # generate filename for noexif / thumb if necessary
+    filename, fileext = os.path.splitext(saved_filename)
+    if len(noexif_filename) == 0:
+        noexif_filename = "%s.noexif%s" % (filename, fileext)
+    if len(thumb_filename) == 0:
+        thumb_filename = "%s.thumb%s" % (filename, fileext)
+
     # read orientation
     read_cmd = "%s -g Exif.Image.Orientation print -Pv %s" % (EXIV2_CMD, imagefile)
-    current_app.logger.info("read_cmd = %s" % (read_cmd))
+    # current_app.logger.info("read_cmd = %s" % (read_cmd))
     result = os.popen(read_cmd).read().strip()
     orientation = 1
     if len(result) > 0:
         orientation = int(result)
-    current_app.logger.info("result = %s, orientation = %d" % (result, orientation))
+    # current_app.logger.info("result = %s, orientation = %d" % (result, orientation))
 
     # open file
     im = Image.open(imagefile)
@@ -98,17 +105,16 @@ def reset_orientation(saved_filename="", filepath=""):
         # Rotation 90
         mirror = im.transpose(Image.ROTATE_90)
 
-    # save transposed image
-    filename, fileext = os.path.splitext(saved_filename)
-    new_saved_filename = "%s.noexif%s" % (filename, fileext)
-    imagefile = os.path.join(filepath, new_saved_filename)
-    current_app.logger.info("save to file %s" % (imagefile))
+    # save noexif image
+    imagefile = os.path.join(filepath, noexif_filename)
+    current_app.logger.info("No Exif image saved to file %s" % (imagefile))
     mirror.save(imagefile)
 
-    # set_cmd = "%s -M'set Exif.Image.Orientation %d' %s" % (EXIV2_CMD, 2, imagefile)
-    # result = os.popen(set_cmd).read()
-    # print set_cmd
+    # generate thumb
+    size = 800, 600
+    mirror.thumbnail(size, Image.ANTIALIAS)
 
-if __name__ == "__main__":
-    reset_orientation("a.jpg", "d:\\")
-    reset_orientation("1_a.jpg", "d:\\")
+    # save thumb image
+    imagefile = os.path.join(filepath, thumb_filename)
+    current_app.logger.info("Thumb image saved to file %s" % (imagefile))
+    mirror.save(imagefile)

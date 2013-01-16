@@ -9,7 +9,7 @@ import json
 from database import db_session
 from models import Photo
 from decorators import login_required
-from exiv2 import reset_orientation, get_image_exif, get_image_date
+from exiv2 import get_image_exif, get_image_date, save_transposed_imagefiles
 
 
 bp = Blueprint('uploads', __name__)
@@ -28,6 +28,24 @@ def allowed_file(filename):
 def get_saved_filename(filename):
     if filename:
         return secure_filename(quote(filename.encode("UTF-8")))
+    return None
+
+
+def get_noexif_filename(filename):
+    if filename:
+        saved_filename = get_saved_filename(filename)
+        # save transposed image
+        filename, fileext = os.path.splitext(saved_filename)
+        return "%s.noexif%s" % (filename, fileext)
+    return None
+
+
+def get_thumb_filename(filename):
+    if filename:
+        saved_filename = get_saved_filename(filename)
+        # save transposed image
+        filename, fileext = os.path.splitext(saved_filename)
+        return "%s.thumb%s" % (filename, fileext)
     return None
 
 
@@ -68,12 +86,21 @@ def index():
                                    "delete_url": "",
                                    "delete_type": "POST"})
                     continue
+
+                # save file
                 saved_filename = get_saved_filename(fileobj.filename)
                 filesize = get_file_size(fileobj.stream)
                 current_app.logger.info("filename original = %s, escaped = %s, size = %d" % (fileobj.filename, saved_filename, filesize))
                 fileobj.save(os.path.join(current_app.config['UPLOAD_FOLDER'], saved_filename))
 
+                # process file to get noexif image, thumb image
+                noexif_filename = get_noexif_filename(fileobj.filename)
+                thumb_filename = get_thumb_filename(fileobj.filename)
+                save_transposed_imagefiles(saved_filename, noexif_filename, thumb_filename, current_app.config['UPLOAD_FOLDER'])
+
                 photo = Photo(filename=fileobj.filename, saved_filename=saved_filename)
+                photo.noexif_filename = noexif_filename
+                photo.thumb_filename = thumb_filename
                 photo.size = filesize
                 photo.start_date = get_image_date(saved_filename=saved_filename, filepath=current_app.config['UPLOAD_FOLDER'])
                 photo.exif = get_image_exif(saved_filename=saved_filename, filepath=current_app.config['UPLOAD_FOLDER'])
@@ -84,7 +111,7 @@ def index():
                 result.append({"name": fileobj.filename,
                                "size": filesize,
                                "url": url_for("photos.show_photo", filename=fileobj.filename),
-                               "thumbnail_url": url_for("photos.show_photo", filename=fileobj.filename),
+                               "thumbnail_url": url_for("photos.show_thumb", filename=fileobj.filename),
                                "delete_url": "",
                                "delete_type": "POST"})
             else:

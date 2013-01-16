@@ -49,8 +49,8 @@ class Photo(Base):
     id = Column(Integer, primary_key=True)
     filename = Column(String(120), unique=True)
     saved_filename = Column(String(180))
-    saved_filename_original = Column(String(180))
-    saved_filename_thumb = Column(String(180))
+    noexif_filename = Column(String(180))
+    thumb_filename = Column(String(180))
 
     # for timeline photos
     headline = Column(String(256), default="")
