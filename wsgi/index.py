@@ -33,12 +33,12 @@ def timeline_json():
         setting = settings[0]
         headline = setting.headline
         text = setting.setting_text
-        start_date = setting.start_date
+        start_date = setting.start_date.replace("-", ",")
 
     # collect all photos
     tl = Timeline(headline, text, start_date)
-    photos = Photo.query.all()
+    photos = Photo.query.filter(Photo.visibility == True). all()
     for photo in photos:
         dt = photo.start_date.replace("-", ",")
-        tl.add_date(dt, photo.filename, url_for("photos.show_photo", filename=photo.filename))
+        tl.add_date(startDate=dt, headline=photo.headline, asset_media=url_for("photos.show_photo", filename=photo.filename), text=photo.photo_text)
     return tl.get_json()

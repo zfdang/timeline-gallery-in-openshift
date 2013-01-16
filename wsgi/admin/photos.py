@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
-from flask import Blueprint, render_template, abort, url_for, session, current_app, flash, request
+from flask import Blueprint, render_template, abort, url_for, current_app, request
 from flask import send_from_directory
 from models import Photo
+from database import db_session
 import os
 from decorators import login_required
 from pagination import Pagination
@@ -17,12 +18,53 @@ bp = Blueprint('photos', __name__)
 def index(page):
     file_per_page = current_app.config.get('FILE_PER_PAGE', 10)
     photos_count = Photo.query.count()
-    photos = Photo.query.offset((page - 1) * file_per_page).limit(file_per_page)
+    photos = Photo.query.order_by(Photo.filename).offset((page - 1) * file_per_page).limit(file_per_page)
     for photo in photos:
         photo.url = url_for(".show_photo", filename=photo.filename)
 
     pagination = Pagination(page, file_per_page, photos_count)
     return render_template("admin/photos.html", photos=photos, page=page, pagination=pagination)
+
+
+@bp.route('/update/', methods=['POST'])
+@login_required
+def update():
+    if request.method == "POST":
+        target = request.form['name']
+        id = request.form['pk']
+        value = request.form['value']
+        current_app.logger.info("photo_edit: id=%s, target=%s, value=%s" % (id, target, value))
+
+        # find photo instance first
+        photo = Photo.query.get(id)
+        if not photo:
+            return "invalid id"
+
+        if target == "start_date":
+            photo.start_date = value
+            db_session.add(photo)
+            db_session.commit()
+            return photo.start_date
+        elif target == "headline":
+            photo.headline = value
+            db_session.add(photo)
+            db_session.commit()
+            return photo.headline
+        elif target == "text":
+            photo.photo_text = value
+            db_session.add(photo)
+            db_session.commit()
+            return photo.photo_text
+        elif target == "visibility":
+            if value == "True":
+                photo.visibility = True
+            else:
+                photo.visibility = False
+            db_session.add(photo)
+            db_session.commit()
+            return value
+
+    return "Unknown action"
 
 
 @bp.route('/file/<filename>')

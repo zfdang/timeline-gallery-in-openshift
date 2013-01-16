@@ -13,14 +13,14 @@ class Config(object):
     # find upload data path
     if 'OPENSHIFT_APP_UUID' in os.environ:
         UPLOAD_FOLDER = os.path.join(os.environ['OPENSHIFT_DATA_DIR'], "uploads")
-        DATABASE_URL = '%s%s' % (os.environ['OPENSHIFT_MYSQL_DB_URL'], os.environ['OPENSHIFT_APP_NAME'])
+        DATABASE_URL = '%s%s?charset=utf8' % (os.environ['OPENSHIFT_MYSQL_DB_URL'], os.environ['OPENSHIFT_APP_NAME'])
     else:
         UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "..", "data", "uploads")
-        DATABASE_URL = 'mysql://root@127.0.0.1/fwmrm_oltp_zfdang'
+        DATABASE_URL = 'mysql://root@127.0.0.1/demo?charset=utf8'
 
 
 class ProductionConfig(Config):
-    DATABASE_URI = 'mysql://user@localhost/foo'
+    DEBUG = False
 
 
 class DevelopmentConfig(Config):

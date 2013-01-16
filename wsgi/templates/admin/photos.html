@@ -8,10 +8,17 @@
 
 {% block extra_head_block %}
 <link rel="stylesheet" href="/static/big/css/bootstrap-image-gallery.min.css">
+<link href="/static/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
 {% endblock %}
 
 
 {% block main_content %}
+
+<div class="alert alert-info" style="display:none">
+  <a class="close" data-dismiss="alert">&times;</a>
+  <strong><a id='alert-info-title' style="text-transform: uppercase;">status</a></strong>:<BR>
+  <a id='alert-info-message'>message</a>
+</div>
 
 <table class="table table-striped">
   <thead>
@@ -27,18 +34,12 @@
   <tbody data-toggle="modal-gallery" data-target="#modal-gallery">
 
 {% for photo in photos %}
-    <tr>
+    <tr id="{{ photo.id }}">
       <td><A href="{{ url_for("photos.show_photo", filename=photo.filename) }}" data-gallery="gallery" title="{{ photo.filename }}">{{ photo.filename }}</a></td>
-      <td>{{ photo.headline }} </td>
-      <td>{{ photo.photo_text  }} </td>
-      <td>{{ photo.start_date }} </td>
-      <td id="public">
-          {% if photo.visibility %}
-              <i class="icon-ok"></i>
-          {% else %}
-              <i class="icon-remove"></i>
-          {% endif %}
-      </td>
+      <td><a href="#" id="headline" class="headline" data-type="text" data-pk="{{ photo.id }}" data-url="{{ url_for("photos.update") }}" data-original-title="Enter headline:">{{ photo.headline }}</a></td>
+      <td><a href="#" id="text" class="text" data-type="text" data-pk="{{ photo.id }}" data-url="{{ url_for("photos.update") }}" data-original-title="Enter text:">{{ photo.photo_text  }}</a></td>
+      <td><a href="#" id="start_date" class="start_date" data-type="combodate"  data-format="YYYY-MM-DD" data-viewformat="YYYY-MM-DD" data-template="YYYY-MM-DD" data-pk="{{ photo.id }}" data-value="{{ photo.start_date }}" data-url="{{ url_for("photos.update") }}" data-original-title="Select Start Date:"></a></td>
+      <td><a href="#" id="visibility" class="visibility" data-type="select" data-pk="{{ photo.id }}" data-value="{{ photo.visibility }}" data-url="{{ url_for("photos.update") }}" data-original-title="Select status"></a></td>
       <td>
         <div class="btn-group">
           <a class="btn btn-mini btn-info" onClick="editPhoto({{ photo.id }})">Edit</a>
@@ -88,4 +89,7 @@
 {% block extra_scripts %}
 <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
 <script src="/static/big/js/bootstrap-image-gallery.min.js"></script>
+<script src="/static/bootstrap-editable/js/moment.min.js"></script>
+<script src="/static/bootstrap-editable/js/bootstrap-editable.js"></script>
+<script src="/static/js/photos.js"></script>
 {% endblock %}
