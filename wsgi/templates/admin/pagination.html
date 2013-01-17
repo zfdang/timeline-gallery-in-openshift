@@ -5,7 +5,7 @@
   <div class="pagination pull-right">
   <ul>
   {% if pagination.has_prev %}
-    <li><a href="{{ url_for_other_page(pagination.page - 1) }}">&laquo; Prev</a></li>
+    <li><a href="{{ url_for_other_page(pagination.page - 1) }}">&laquo; {{_("Prev")}}</a></li>
   {% endif %}
   {% for page in pagination.iter_pages() %}
     {% if page %}
@@ -19,7 +19,7 @@
     {% endif %}
   {% endfor %}
   {% if pagination.has_next %}
-    <li><a href="{{ url_for_other_page(pagination.page + 1) }}">Next &raquo;</a></li>
+    <li><a href="{{ url_for_other_page(pagination.page + 1) }}">{{_("Next")}} &raquo;</a></li>
   {% endif %}
   </ul>
   </div>

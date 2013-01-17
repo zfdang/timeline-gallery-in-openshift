@@ -8,6 +8,7 @@ from decorators import login_required
 from pagination import Pagination
 from uploads import get_saved_filename, get_noexif_filename, get_thumb_filename
 from exiv2 import get_image_exif, get_image_date
+import json
 
 bp = Blueprint('photos', __name__)
 
@@ -63,6 +64,15 @@ def update():
             db_session.add(photo)
             db_session.commit()
             return value
+        elif target == "delete":
+            filename = photo.filename
+            db_session.delete(photo)
+            db_session.commit()
+            result = {
+                'status': 'success',
+                'message': '%s has been deleted!' % (filename)
+            }
+            return json.dumps(result)
 
     return "Unknown action"
 

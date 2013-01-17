@@ -1,7 +1,10 @@
 $(document).ready(function() {
    // $.fn.editable.defaults.mode = 'inline'; // default = popup
    $('a.headline').editable();
-   $('a.text').editable({mode:'inline', rows:4, });
+   $('a.text').editable({
+      mode: 'inline',
+      rows: 4,
+   });   
    $('a.start_date').editable();
    $('a.visibility').editable({
      // value: 2,
@@ -9,7 +12,33 @@ $(document).ready(function() {
        { value: 'True', text: 'Public'}, 
        { value: 'False', text: 'Private'},
      ]
-   });   // // $('.edit').editable('http://www.example.com/save.php');
+   });
+   $("i.photo-delete").click(function() {
+     photo_id = $(this).attr("id");
+
+     $.ajax({
+       type: "POST",
+       url: "/admin/photos/update/",
+       data: {
+         "pk": photo_id,
+         "name": 'delete',
+         "value":''
+       },
+       dataType: 'json',
+       success: function(msg) {
+         // show alert message
+         $("#alert-info-title").html(msg.status);
+         $("#alert-info-message").html(msg.message);
+         $(".alert-info").toggle(true);
+
+         // remove photo in the list
+         if(msg.status == "success")
+            $("tr#" + photo_id).remove();
+       }
+     });
+
+   });
+   // // $('.edit').editable('http://www.example.com/save.php');
    // // initialize all start_date
    // $("input.start_date").datepicker({
    //   dateFormat: "yy-mm-dd"

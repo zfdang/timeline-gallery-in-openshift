@@ -24,12 +24,12 @@
   <thead>
     <tr>
       <th width="100px"></th>
-      <th>Filename</th>
-      <th>Headline</th>
-      <th>Text</th>
-      <th width="80px">Start Date</th>
-      <th width="50px">Visibility</th>
-      <th width="50px">Action</th>
+      <th>{{_("Filename")}}</th>
+      <th>{{_("Headline")}}</th>
+      <th>{{_("Text")}}</th>
+      <th width="80px" class="text-center">{{_("Start date")}}</th>
+      <th width="50px" class="text-center">{{_("Visibility")}}</th>
+      <th width="50px" class="text-center">{{_("Delete")}}</th>
     </tr>
   </thead>
   <tbody data-toggle="modal-gallery" data-target="#modal-gallery">
@@ -38,11 +38,11 @@
     <tr id="{{ photo.id }}">
       <td><A href="{{ url_for("photos.show_photo", filename=photo.filename) }}" data-gallery="gallery" title="{{ photo.filename }}"><img src="{{ url_for("photos.show_thumb", filename=photo.filename) }}" class="thumb" title="{{ photo.filename }}"></A></td>
       <td>{{ photo.filename }}</td>
-      <td><a href="#" id="headline" class="headline" data-type="text" data-pk="{{ photo.id }}" data-url="{{ url_for("photos.update") }}" data-original-title="Enter headline:">{{ photo.headline }}</a></td>
-      <td><a href="#" id="text" class="text" data-type="textarea" data-pk="{{ photo.id }}" data-url="{{ url_for("photos.update") }}" data-original-title="Enter text:">{{ photo.photo_text  }}</a></td>
-      <td class="text-center"><a href="#" id="start_date" class="start_date" data-type="combodate"  data-format="YYYY-MM-DD" data-viewformat="YYYY-MM-DD" data-template="YYYY-MM-DD" data-pk="{{ photo.id }}" data-value="{{ photo.start_date }}" data-url="{{ url_for("photos.update") }}" data-original-title="Select Start Date:"></a></td>
-      <td class="text-center"><a href="#" id="visibility" class="visibility" data-type="select" data-pk="{{ photo.id }}" data-value="{{ photo.visibility }}" data-url="{{ url_for("photos.update") }}" data-original-title="Select status"></a></td>
-      <td class="text-center"><a class="btn btn-mini btn-warning"><i class="icon-trash icon-white"></i></a></td>
+      <td><a href="#" id="headline" class="headline" data-type="text" data-pk="{{ photo.id }}" data-url="{{ url_for("photos.update") }}" data-original-title="{{_("Enter headline:")}}">{{ photo.headline }}</a></td>
+      <td><a href="#" id="text" class="text" data-type="textarea" data-pk="{{ photo.id }}" data-url="{{ url_for("photos.update") }}" data-original-title="{{_("Enter text:")}}">{{ photo.photo_text  }}</a></td>
+      <td class="text-center"><a href="#" id="start_date" class="start_date" data-type="combodate"  data-format="YYYY-MM-DD" data-viewformat="YYYY-MM-DD" data-template="YYYY-MM-DD" data-pk="{{ photo.id }}" data-value="{{ photo.start_date }}" data-url="{{ url_for("photos.update") }}" data-original-title="{{_("Select start date:")}}"></a></td>
+      <td class="text-center"><a href="#" id="visibility" class="visibility" data-type="select" data-pk="{{ photo.id }}" data-value="{{ photo.visibility }}" data-url="{{ url_for("photos.update") }}" data-original-title="{{_("Select visibility:")}}"></a></td>
+      <td class="text-center"><a href="#"><i id="{{ photo.id }}" class="icon-trash photo-delete"></i></a></td>
     </tr>
 {% endfor %}
 
@@ -61,18 +61,18 @@
     <div class="modal-footer">
         <a class="btn modal-download" target="_blank">
             <i class="icon-download"></i>
-            <span>Download</span>
+            <span>{{_("Download")}}</span>
         </a>
         <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000">
             <i class="icon-play icon-white"></i>
-            <span>Slideshow</span>
+            <span>{{_("Slideshow")}}</span>
         </a>
         <a class="btn btn-info modal-prev">
             <i class="icon-arrow-left icon-white"></i>
-            <span>Previous</span>
+            <span>{{_("Previous")}}</span>
         </a>
         <a class="btn btn-primary modal-next">
-            <span>Next</span>
+            <span>{{_("Next")}}</span>
             <i class="icon-arrow-right icon-white"></i>
         </a>
     </div>
