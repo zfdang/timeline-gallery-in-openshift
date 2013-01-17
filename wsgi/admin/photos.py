@@ -77,6 +77,18 @@ def update():
     return "Unknown action"
 
 
+@bp.route('/html/<filename>')
+def show_html(filename):
+    noexif_filename = get_noexif_filename(filename)
+    current_app.logger.info("serve html file: %s" % (noexif_filename))
+    if not os.path.exists(os.path.join(current_app.config['UPLOAD_FOLDER'], noexif_filename)):
+        abort(404)
+    photo_url = url_for(".show_photo", filename=filename)
+    photo_thumb_url = url_for(".show_thumb", filename=filename)
+    photo_name = filename
+    return render_template("photo.html", photo_url=photo_url, photo_thumb_url=photo_thumb_url, photo_name=photo_name)
+
+
 @bp.route('/file/<filename>')
 def show_photo(filename):
     # noexif_filename = get_saved_filename(filename)
