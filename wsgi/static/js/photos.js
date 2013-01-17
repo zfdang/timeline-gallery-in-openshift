@@ -1,7 +1,7 @@
 $(document).ready(function() {
    // $.fn.editable.defaults.mode = 'inline'; // default = popup
    $('a.headline').editable();
-   $('a.text').editable();
+   $('a.text').editable({mode:'inline', rows:4, });
    $('a.start_date').editable();
    $('a.visibility').editable({
      // value: 2,

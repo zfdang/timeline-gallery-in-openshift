@@ -29,11 +29,12 @@ $(function () {
     $('#fileupload').fileupload('option', {
         maxFileSize: 10000000,
         // acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        // files: files,
         process: [
             {
                 action: 'load',
                 fileTypes: /^image\/(gif|jpeg|png)$/,
-                maxFileSize: 20000000 // 20MB
+                maxFileSize: 10000000 // 10MB
             },
             // {
             //     action: 'resize',

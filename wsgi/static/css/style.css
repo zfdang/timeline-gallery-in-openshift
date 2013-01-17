@@ -1,0 +1,12 @@
+/*define the max size of preview img*/
+img.thumb
+{
+max-width: 80px;
+max-height: 80px;
+}
+
+td.text-center
+{
+text-align:center;
+}
+
