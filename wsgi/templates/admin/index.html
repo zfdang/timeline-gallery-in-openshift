@@ -7,7 +7,18 @@
 
 
 {% block main_content %}
-{{ _("Hello World") }}
+    <div class="container">
+        <!-- Main hero unit for a primary marketing message or call to action -->
+        <div class="hero-unit">
+            <h3>{{ _("Admin") }}</h3>
+            <ol>
+                <li>{{ _("Photos") }}</li>
+                <li>{{ _("Upload") }}</li>
+                <li>{{ _("Settings") }}</li>
+                <li>{{ _("Users") }}</li>
+            </ol>
+        </div>
+    </div> <!-- /container -->
 {% endblock %}
 
 
