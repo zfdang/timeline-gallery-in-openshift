@@ -85,5 +85,9 @@
 <script src="/static/big/js/bootstrap-image-gallery.min.js"></script>
 <script src="/static/bootstrap-editable/js/moment.min.js"></script>
 <script src="/static/bootstrap-editable/js/bootstrap-editable.js"></script>
+<script>
+  // the following variable will be used by photos.js
+  var photo_update_url = "{{ url_for("photos.update") }}";
+</script>
 <script src="/static/js/photos.js"></script>
 {% endblock %}

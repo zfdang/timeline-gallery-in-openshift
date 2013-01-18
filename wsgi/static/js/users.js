@@ -1,24 +1,14 @@
 $(document).ready(function() {
    // $.fn.editable.defaults.mode = 'inline'; // default = popup
-   $('a.headline').editable();
-   $('a.text').editable({
-      mode: 'inline',
-      rows: 4,
-   });   
-   $('a.start_date').editable();
-   $('a.visibility').editable({
-     // value: 2,
-     source: [
-       { value: 'True', text: 'Public'}, 
-       { value: 'False', text: 'Private'},
-     ]
-   });
-   $("i.photo-delete").click(function() {
+   $('a.username').editable();
+   $('a.email').editable();
+   $('a.password').editable();
+   $("i.user-delete").click(function() {
      photo_id = $(this).attr("id");
 
      $.ajax({
        type: "POST",
-       url: photo_update_url,
+       url: user_update_url,
        data: {
          "pk": photo_id,
          "name": 'delete',

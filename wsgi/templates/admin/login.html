@@ -7,13 +7,15 @@
         <div class="control-group">
             <label class="control-label" for="username">{{_("Username")}}</label>
             <div class="controls">
-                <input type="text" class="input-xlarge" name="username"  placeholder="Username">
+                <input type="text" class="input-xlarge" name="username"  placeholder="">
+                <p class="help-block">{{ _("Default: 'admin'") }}</p>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="password">{{_("Password")}}</label>
             <div class="controls">
-                <input type="text" class="input-xlarge" name="password"  placeholder="Password">
+                <input type="password" class="input-xlarge" name="password"  placeholder="">
+                <p class="help-block">{{ _("Default: 'Password2012'") }}</p>
             </div>
         </div>
         <div class="form-actions">

@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, url_for, request, session, redirec
 from urllib import unquote_plus
 from models import User
 
-
 bp = Blueprint('login', __name__)
 
 

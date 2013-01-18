@@ -1,9 +1,10 @@
 # -*- coding: UTF-8 -*-
 from flask import Blueprint, render_template, session, current_app, flash, request
 from database import init_db, db_session
-from models import Photo, User
+from models import User
 import os
 from decorators import login_required
+
 
 bp = Blueprint('admin', __name__)
 
@@ -14,22 +15,7 @@ def index():
     return render_template('admin/index.html')
 
 
-@bp.route("/test")
-def admin_test():
-    users = User.query.filter(User.name == 'dang').all()
-    for user in users:
-        print user.id, user.name, user.password
-        for photo in user.photos:
-            print photo.id, photo.filename, photo.user_id, photo.user
-
-    photos = Photo.query.all()
-    for photo in photos:
-        print photo.filename, photo.user_id, photo.user
-
-    return "test"
-
-
-@bp.route("/init")
+@bp.route('/init')
 def init():
     messages = []
 
@@ -38,17 +24,17 @@ def init():
     messages.append("session cleared!")
 
     # init database
-    init_db()
-    messages.append("database initialized!")
+    init_db()  # this operation won't create tables if they exist
+
     # add init data for databases
-    user = User.query.filter(User.name == "dang").all()
-    if not user:
-        u1 = User(name='dang', email='zfang@freewheel.tv', password='zhengfa')
+    users = User.query.filter(User.name == "admin").all()
+    if len(users) == 0:
+        u1 = User(name='admin', email='admin@youremail.com', password='Password2012')
         db_session.add(u1)
         db_session.commit()
-        messages.append("user 'dang' added!")
+        messages.append("user 'admin' added!")
     else:
-        messages.append("user 'dang' exists!")
+        messages.append("user 'admin' exists!")
 
     # init upload folder
     if not os.path.exists(current_app.config['UPLOAD_FOLDER']):
@@ -59,7 +45,8 @@ def init():
 
     for message in messages:
         flash(message)
-    return render_template("admin/init.html")
+
+    return render_template('admin/init.html')
 
 
 @bp.route("/log/", defaults={'type': "error"})

@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from flask import Flask, request, url_for, render_template, session
+from flask import Flask, request, url_for, render_template, session, redirect
 from urllib import quote_plus, unquote_plus
 
 # app starts here
@@ -31,6 +31,11 @@ app.register_blueprint(users.bp, url_prefix='/admin/users')
 app.register_blueprint(settings.bp, url_prefix='/admin/settings')
 app.register_blueprint(uploads.bp, url_prefix='/admin/uploads')
 app.register_blueprint(login.bp, url_prefix='/admin/login')
+
+
+@app.route("/favicon.ico")
+def favicon():
+    return redirect(url_for('static', filename='favicon.ico'))
 
 
 # babel related settings

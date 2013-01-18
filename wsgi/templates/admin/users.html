@@ -1,21 +1,35 @@
 {% extends "admin/admin_layout.html" %}
 
+{% block extra_head_block %}
+<link href="/static/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+{% endblock %}
+
 {% block main_content %}
-<table class="table table-striped">
+
+<div class="alert alert-info" style="display:none">
+  <a class="close" data-dismiss="alert">&times;</a>
+  <strong><a id='alert-info-title' style="text-transform: uppercase;">status</a></strong>:<BR>
+  <a id='alert-info-message'>message</a>
+</div>
+
+
+<table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Email</th>
+      <th>{{_("Login Name")}}</th>
+      <th>{{_("Email")}}</th>
+      <th>{{_("Password")}}</th>
+      <th class="text-center">{{_("Delete")}}</th>
     </tr>
   </thead>
   <tbody>
 
 {% for user in users %}
-    <tr>
-      <td>{{ user.id }}</td>
-      <td>{{ user.name }} </td>
-      <td>{{ user.email  }} </td>
+    <tr id={{ user.id }}>
+      <td><a href="#" id="username" class="username" data-type="text" data-pk="{{ user.id }}" data-url="{{ url_for("users.update") }}" data-original-title="{{_("Enter login name:")}}">{{ user.name }}</a></td>
+      <td><a href="#" id="email" class="email" data-type="text" data-pk="{{ user.id }}" data-url="{{ url_for("users.update") }}" data-original-title="{{_("Enter email address:")}}">{{ user.email }}</a></td>
+      <td><a href="#" id="password" class="password" data-type="password" data-pk="{{ user.id }}" data-url="{{ url_for("users.update") }}" data-original-title="{{_("Enter password:")}}">[hidden]</a></td>
+      <td class="text-center"><a href="#"><i id="{{ user.id }}" class="icon-trash user-delete"></i></a></td>
     </tr>
 {% endfor %}
 
@@ -24,3 +38,11 @@
 
 {% endblock %}
 
+{% block extra_scripts %}
+<script src="/static/bootstrap-editable/js/bootstrap-editable.js"></script>
+<script>
+  // the following variable will be used by users.js
+  var user_update_url = "{{ url_for("users.update") }}";
+</script>
+<script src="/static/js/users.js"></script>
+{% endblock %}
