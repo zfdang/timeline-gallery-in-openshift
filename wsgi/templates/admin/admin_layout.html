@@ -11,6 +11,7 @@
     {% block extra_head_block %} {% endblock %}
 </head>
 <body>
+
 <div class="container">    
     <div class="masthead">
         <div class="navbar">
@@ -31,7 +32,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for lang in langs %}
-                          <li><a href="{{ url_for("langs.set_lang", lang_code=lang.locale, url=request.url|quoteplus)}}">{{ lang.description}}</a></li>
+                          <li><a href="{{ url_for("langs.set_lang", lang_code=lang.locale, url=request.url|quoteplus) }}">{{ lang.description}}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -41,18 +42,17 @@
         </div><!-- navbar -->
     </div><!-- masthead -->
 
-    {% with messages = get_flashed_messages() %}
+      {% set messages = get_flashed_messages() %}
       {% if messages %}
-    <div class="alert alert-info">
+      <div class="alert alert-info">
         <a class="close" data-dismiss="alert">&times;</a>
         <ul>
         {% for message in messages %}
           <li>{{ message }}</li>
         {% endfor %}
         </ul>
-    </div>
+      </div>
       {% endif %}
-    {% endwith %}
 
     {% block main_content %} {% endblock %}
 

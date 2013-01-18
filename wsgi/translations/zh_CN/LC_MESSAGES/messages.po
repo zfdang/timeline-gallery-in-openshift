@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-01-17 16:35+0800\n"
+"POT-Creation-Date: 2013-01-18 14:35+0800\n"
 "PO-Revision-Date: 2012-12-28 15:35+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_CN <LL@li.org>\n"
@@ -18,18 +18,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: index.py:53
+#: index.py:56
 #, python-format
 msgid "Day %(value)d"
 msgstr "第%(value)d天"
 
 #: admin/settings.py:46
 msgid "Setting updated!"
-msgstr ""
+msgstr "设置已更新！"
 
 #: templates/index.html:32
 msgid "timeline_lang"
 msgstr "zh-ch"
+
+#: templates/admin/admin_layout.html:21
+msgid "Search"
+msgstr "搜索"
+
+#: templates/admin/admin_layout.html:25
+msgid "Photos"
+msgstr "照片列表"
+
+#: templates/admin/admin_layout.html:26
+msgid "Upload"
+msgstr "上载照片"
+
+#: templates/admin/admin_layout.html:27
+msgid "Settings"
+msgstr "设置"
+
+#: templates/admin/admin_layout.html:28
+msgid "Users"
+msgstr "用户"
+
+#: templates/admin/admin_layout.html:61
+msgid "Powered by "
+msgstr "运行于"
 
 #: templates/admin/index.html:10
 msgid "Hello World"
@@ -39,11 +63,19 @@ msgstr "世界你好"
 msgid "Username"
 msgstr "用户名"
 
-#: templates/admin/login.html:14
+#: templates/admin/login.html:11
+msgid "Default: 'admin'"
+msgstr "缺省用户: 'admin'"
+
+#: templates/admin/login.html:15 templates/admin/users.html:21
 msgid "Password"
 msgstr "密码"
 
-#: templates/admin/login.html:21
+#: templates/admin/login.html:18
+msgid "Default: 'Password2012'"
+msgstr "缺省密码: 'Password2012'"
+
+#: templates/admin/login.html:23
 msgid "Login"
 msgstr "登陆"
 
@@ -81,7 +113,7 @@ msgstr "开始日期"
 msgid "Visibility"
 msgstr "状态"
 
-#: templates/admin/photos.html:32
+#: templates/admin/photos.html:32 templates/admin/users.html:22
 msgid "Delete"
 msgstr "删除"
 
@@ -138,6 +170,25 @@ msgstr "开始日期"
 msgid "Update"
 msgstr "更新"
 
-#~ msgid "Day %d"
-#~ msgstr "第%d天"
+#: templates/admin/users.html:19
+msgid "Login Name"
+msgstr "登录名"
+
+#: templates/admin/users.html:20
+msgid "Email"
+msgstr "电子邮件"
+
+#: templates/admin/users.html:29
+#, fuzzy
+msgid "Enter login name:"
+msgstr "输入照片标题:"
+
+#: templates/admin/users.html:30
+msgid "Enter email address:"
+msgstr "输入电子邮件地址"
+
+#: templates/admin/users.html:31
+#, fuzzy
+msgid "Enter password:"
+msgstr "密码"
 
