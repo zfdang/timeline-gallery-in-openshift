@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-01-18 14:35+0800\n"
+"POT-Creation-Date: 2013-01-18 16:43+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: index.py:56
+#: index.py:44
 #, python-format
 msgid "Day %(value)d"
 msgstr ""
@@ -30,8 +30,16 @@ msgstr ""
 msgid "timeline_lang"
 msgstr ""
 
-#: templates/admin/admin_layout.html:21
+#: templates/layout.html:18 templates/admin/admin_layout.html:21
 msgid "Search"
+msgstr ""
+
+#: templates/layout.html:32
+msgid "Admin"
+msgstr ""
+
+#: templates/layout.html:57 templates/admin/admin_layout.html:61
+msgid "Powered by "
 msgstr ""
 
 #: templates/admin/admin_layout.html:25
@@ -48,10 +56,6 @@ msgstr ""
 
 #: templates/admin/admin_layout.html:28
 msgid "Users"
-msgstr ""
-
-#: templates/admin/admin_layout.html:61
-msgid "Powered by "
 msgstr ""
 
 #: templates/admin/index.html:10
@@ -83,6 +87,7 @@ msgid "Prev"
 msgstr ""
 
 #: templates/admin/pagination.html:22 templates/admin/photos.html:75
+#: templates/admin/uploads.html:92
 msgid "Next"
 msgstr ""
 
@@ -130,15 +135,15 @@ msgstr ""
 msgid "Select visibility:"
 msgstr ""
 
-#: templates/admin/photos.html:64
+#: templates/admin/photos.html:64 templates/admin/uploads.html:81
 msgid "Download"
 msgstr ""
 
-#: templates/admin/photos.html:68
+#: templates/admin/photos.html:68 templates/admin/uploads.html:85
 msgid "Slideshow"
 msgstr ""
 
-#: templates/admin/photos.html:72
+#: templates/admin/photos.html:72 templates/admin/uploads.html:89
 msgid "Previous"
 msgstr ""
 
@@ -164,6 +169,18 @@ msgstr ""
 
 #: templates/admin/settings.html:42
 msgid "Update"
+msgstr ""
+
+#: templates/admin/uploads.html:23
+msgid "Upload Photos:"
+msgstr ""
+
+#: templates/admin/uploads.html:35
+msgid "Add files..."
+msgstr ""
+
+#: templates/admin/uploads.html:40
+msgid "Start upload"
 msgstr ""
 
 #: templates/admin/users.html:19

@@ -5,25 +5,13 @@ from timeline import Timeline
 from sqlalchemy import desc
 import datetime
 from flaskext.babel import gettext as _
-from sqlalchemy.exc import ProgrammingError
 
 bp = Blueprint('index', __name__)
 
 
 @bp.route('/')
 def index():
-    headline = "Timeline Photo Headline"
-    host = "127.0.0.1"
-    # find settings
-    try:
-        settings = Setting.query.order_by(desc(Setting.id)).all()
-        if len(settings) > 0:
-            setting = settings[0]
-            headline = setting.headline
-            host = setting.host
-        return render_template('index.html', title=headline, host=host)
-    except ProgrammingError:
-        return "please click <A href='/admin/init'>here</a> to init db first."
+    return render_template('index.html')
 
 
 @bp.route("timeline")

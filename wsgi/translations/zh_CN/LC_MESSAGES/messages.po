@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-01-18 14:35+0800\n"
+"POT-Creation-Date: 2013-01-18 16:43+0800\n"
 "PO-Revision-Date: 2012-12-28 15:35+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_CN <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: index.py:56
+#: index.py:44
 #, python-format
 msgid "Day %(value)d"
 msgstr "第%(value)d天"
@@ -31,9 +31,18 @@ msgstr "设置已更新！"
 msgid "timeline_lang"
 msgstr "zh-ch"
 
-#: templates/admin/admin_layout.html:21
+#: templates/layout.html:18 templates/admin/admin_layout.html:21
 msgid "Search"
 msgstr "搜索"
+
+#: templates/layout.html:32
+#, fuzzy
+msgid "Admin"
+msgstr "管理"
+
+#: templates/layout.html:57 templates/admin/admin_layout.html:61
+msgid "Powered by "
+msgstr "运行于"
 
 #: templates/admin/admin_layout.html:25
 msgid "Photos"
@@ -50,10 +59,6 @@ msgstr "设置"
 #: templates/admin/admin_layout.html:28
 msgid "Users"
 msgstr "用户"
-
-#: templates/admin/admin_layout.html:61
-msgid "Powered by "
-msgstr "运行于"
 
 #: templates/admin/index.html:10
 msgid "Hello World"
@@ -84,6 +89,7 @@ msgid "Prev"
 msgstr "后退"
 
 #: templates/admin/pagination.html:22 templates/admin/photos.html:75
+#: templates/admin/uploads.html:92
 msgid "Next"
 msgstr "前进"
 
@@ -133,22 +139,22 @@ msgstr "选择开始日期:"
 msgid "Select visibility:"
 msgstr "选择状态:"
 
-#: templates/admin/photos.html:64
+#: templates/admin/photos.html:64 templates/admin/uploads.html:81
 msgid "Download"
 msgstr "下载"
 
-#: templates/admin/photos.html:68
+#: templates/admin/photos.html:68 templates/admin/uploads.html:85
 msgid "Slideshow"
 msgstr "幻灯演示"
 
-#: templates/admin/photos.html:72
+#: templates/admin/photos.html:72 templates/admin/uploads.html:89
 msgid "Previous"
 msgstr "回退"
 
 #: templates/admin/settings.html:12
 #, fuzzy
 msgid "Timeline Settings"
-msgstr "zh-ch"
+msgstr "时间线设置"
 
 #: templates/admin/settings.html:14
 msgid "Host"
@@ -169,6 +175,18 @@ msgstr "开始日期"
 #: templates/admin/settings.html:42
 msgid "Update"
 msgstr "更新"
+
+#: templates/admin/uploads.html:23
+msgid "Upload Photos:"
+msgstr "上载照片:"
+
+#: templates/admin/uploads.html:35
+msgid "Add files..."
+msgstr "添加文件..."
+
+#: templates/admin/uploads.html:40
+msgid "Start upload"
+msgstr "开始上载"
 
 #: templates/admin/users.html:19
 msgid "Login Name"

@@ -66,8 +66,29 @@ def get_timezone():
 
 # generate variables for all context
 @app.context_processor
-def supported_langs():
+def inject_langs():
     return dict(langs=langs.SUPPORTED_LANGS)
+
+
+@app.context_processor
+def inject_scheme_host_headline():
+    from models import Setting
+    from sqlalchemy import desc
+    headline = "Timeline Photo Headline"
+    host = request.host
+    scheme = request.scheme
+    # find settings
+    try:
+        settings = Setting.query.order_by(desc(Setting.id)).all()
+        if len(settings) > 0:
+            setting = settings[0]
+            if setting.headline:
+                headline = setting.headline
+            if setting.host:
+                host = setting.host
+    except:
+        pass
+    return {'headline': headline, 'host': host, 'scheme': scheme}
 
 
 # pagination helper method

@@ -13,9 +13,9 @@
     <div class="masthead">
         <div class="navbar">
           <div class="navbar-inner">
-            <a class="brand" href="http://{{ host }}/#0"><i class="icon-home"></i>{{ title }}</a>
+            <a class="brand" href="{{ scheme }}://{{ host }}/#0"><i class="icon-home"></i>{{ headline }}</a>
             <form class="navbar-search pull-right"  action="https://www.google.com/search"> 
-              <input type="text" class="search-query" placeholder="{{_("Search")}}" name="q">
+              <input type="text" class="search-query" placeholder="{{ _("Search") }}" name="q">
               <input type="hidden"  name="sitesearch" value="{{ host }}">
             </form>                
             <ul class="nav pull-right">
@@ -25,7 +25,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for lang in langs %}
-                          <li><a href="{{ url_for("langs.set_lang", lang_code=lang.locale, url=request.url|quoteplus) }}">{{ lang.description}}</a></li>
+                          <li><a href="{{ url_for("langs.set_lang", lang_code=lang.locale, url=request.url|quoteplus) }}">{{ lang.description }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -36,18 +36,17 @@
     </div><!-- masthead -->
 
 
-{% with messages = get_flashed_messages() %}
+  {% set messages = get_flashed_messages() %}
   {% if messages %}
-<div class="alert alert-info">
+  <div class="alert alert-info">
     <a class="close" data-dismiss="alert">&times;</a>
     <ul>
     {% for message in messages %}
       <li>{{ message }}</li>
     {% endfor %}
     </ul>
-</div>
+  </div>
   {% endif %}
-{% endwith %}
 
 
     {% block main_content %} {% endblock %}

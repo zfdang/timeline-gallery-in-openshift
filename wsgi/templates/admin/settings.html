@@ -13,7 +13,7 @@
         <div class="control-group">
             <label class="control-label" for="host">{{ _("Host") }}</label>
             <div class="controls">
-                <input type="text" class="input-xlarge" id='host' name="host" value="{{ setting.host }}" placeholder="Required">
+                <input type="text" class="input-xlarge" id='host' name="host" value="{{ setting.host }}" placeholder="Optional">
                 <p class="help-block">{{ _("URL for this website, without HTTP(s)://") }}</p>
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="control-group">
           <label class="control-label" for="start_date">{{ _("Start Date") }}</label>
           <div class="date controls" id="start_date" data-date="" data-date-format="yyyy-mm-dd">
-            <input class="span2" size="16" type="text" id="start_date" name="start_date" value="{{ setting.start_date }}" readonly>
+            <input class="span2" size="16" type="text" id="start_date" name="start_date" value="{{ setting.start_date }}" readonly placeholder="Required">
             <span class="add-on"><i class="icon-calendar"></i></span>
           </div>
         </div>
