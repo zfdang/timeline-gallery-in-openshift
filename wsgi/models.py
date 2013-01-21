@@ -96,7 +96,7 @@ class Monitor(Base):
         'mysql_charset': 'utf8',
     }
     id = Column(Integer, primary_key=True)
-    ipv4 = Column(String(50), unique=True)
+    ipv4 = Column(String(50))
     created_at = Column(TIMESTAMP, server_default=text('NOW()'))
 
     def __init__(self, ipv4=None):

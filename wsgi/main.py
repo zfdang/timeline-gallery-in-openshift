@@ -109,6 +109,19 @@ def quoteplus_filter(s):
     return quote_plus(unquote_plus(s))
 
 
+@app.template_filter("bjtime")
+def convert_to_bjtime_filter(s):
+    from datetime import datetime
+    from pytz import timezone
+    import pytz
+    utctime = datetime(s.year, s.month, s.day, s.hour, s.minute, s.second, s.microsecond, tzinfo=pytz.utc)
+    cstinfo = timezone('Asia/Shanghai')
+    ltime = utctime.astimezone(cstinfo)
+    fmt = '%Y-%m-%d %H:%M:%S %Z%z'
+    ltime_str = ltime.strftime(fmt)
+    return ltime_str
+
+
 # error handlers
 @app.errorhandler(404)
 def page_not_found(e):

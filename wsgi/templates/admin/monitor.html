@@ -21,7 +21,7 @@
 <tr>
   <td>{{ monitor.id }}</td>
   <td>{{ monitor.ipv4 }}</td>
-  <td>{{ monitor.created_at }}</td>
+  <td>{{ monitor.created_at|bjtime }}</td>
 </tr>
 {% endfor %}
 
