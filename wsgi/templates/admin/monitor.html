@@ -1,0 +1,33 @@
+{% extends "admin/admin_layout.html" %}
+
+{% block main_content %}
+
+<form action="" method="POST">
+  <input type="text" name="ipv4">
+  <input type="submit">
+</form>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>IP Address</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for monitor in monitors %}
+<tr>
+  <td>{{ monitor.id }}</td>
+  <td>{{ monitor.ipv4 }}</td>
+  <td>{{ monitor.created_at }}</td>
+</tr>
+{% endfor %}
+
+  </tbody>
+</table>
+
+
+
+{% endblock %}

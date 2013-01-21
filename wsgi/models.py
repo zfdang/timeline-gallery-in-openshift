@@ -88,3 +88,16 @@ class Setting(Base):
     headline = Column(String(256))
     setting_text = Column(String(1024))
     start_date = Column(String(12))
+
+
+class Monitor(Base):
+    __tablename__ = 'monitor'
+    __table_args__ = {
+        'mysql_charset': 'utf8',
+    }
+    id = Column(Integer, primary_key=True)
+    ipv4 = Column(String(50), unique=True)
+    created_at = Column(TIMESTAMP, server_default=text('NOW()'))
+
+    def __init__(self, ipv4=None):
+        self.ipv4 = ipv4
