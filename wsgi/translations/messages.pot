@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-01-18 16:43+0800\n"
+"POT-Creation-Date: 2013-01-24 09:53+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,32 +34,28 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: templates/layout.html:32
+#: templates/layout.html:32 templates/admin/index.html:13
 msgid "Admin"
 msgstr ""
 
-#: templates/layout.html:57 templates/admin/admin_layout.html:61
+#: templates/layout.html:60 templates/admin/admin_layout.html:63
 msgid "Powered by "
 msgstr ""
 
-#: templates/admin/admin_layout.html:25
+#: templates/admin/admin_layout.html:25 templates/admin/index.html:15
 msgid "Photos"
 msgstr ""
 
-#: templates/admin/admin_layout.html:26
+#: templates/admin/admin_layout.html:26 templates/admin/index.html:16
 msgid "Upload"
 msgstr ""
 
-#: templates/admin/admin_layout.html:27
+#: templates/admin/admin_layout.html:27 templates/admin/index.html:17
 msgid "Settings"
 msgstr ""
 
-#: templates/admin/admin_layout.html:28
+#: templates/admin/admin_layout.html:28 templates/admin/index.html:18
 msgid "Users"
-msgstr ""
-
-#: templates/admin/index.html:10
-msgid "Hello World"
 msgstr ""
 
 #: templates/admin/login.html:8

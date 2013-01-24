@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-01-18 16:43+0800\n"
+"POT-Creation-Date: 2013-01-24 09:53+0800\n"
 "PO-Revision-Date: 2012-12-28 15:35+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_CN <LL@li.org>\n"
@@ -35,34 +35,30 @@ msgstr "zh-ch"
 msgid "Search"
 msgstr "搜索"
 
-#: templates/layout.html:32
+#: templates/layout.html:32 templates/admin/index.html:13
 #, fuzzy
 msgid "Admin"
 msgstr "管理"
 
-#: templates/layout.html:57 templates/admin/admin_layout.html:61
+#: templates/layout.html:60 templates/admin/admin_layout.html:63
 msgid "Powered by "
 msgstr "运行于"
 
-#: templates/admin/admin_layout.html:25
+#: templates/admin/admin_layout.html:25 templates/admin/index.html:15
 msgid "Photos"
 msgstr "照片列表"
 
-#: templates/admin/admin_layout.html:26
+#: templates/admin/admin_layout.html:26 templates/admin/index.html:16
 msgid "Upload"
 msgstr "上载照片"
 
-#: templates/admin/admin_layout.html:27
+#: templates/admin/admin_layout.html:27 templates/admin/index.html:17
 msgid "Settings"
 msgstr "设置"
 
-#: templates/admin/admin_layout.html:28
+#: templates/admin/admin_layout.html:28 templates/admin/index.html:18
 msgid "Users"
 msgstr "用户"
-
-#: templates/admin/index.html:10
-msgid "Hello World"
-msgstr "世界你好"
 
 #: templates/admin/login.html:8
 msgid "Username"
@@ -209,4 +205,7 @@ msgstr "输入电子邮件地址"
 #, fuzzy
 msgid "Enter password:"
 msgstr "密码"
+
+#~ msgid "Hello World"
+#~ msgstr "世界你好"
 

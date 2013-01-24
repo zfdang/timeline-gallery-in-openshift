@@ -42,17 +42,18 @@
         </div><!-- navbar -->
     </div><!-- masthead -->
 
-      {% set messages = get_flashed_messages() %}
-      {% if messages %}
-      <div class="alert alert-info">
-        <a class="close" data-dismiss="alert">&times;</a>
-        <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="alert alert-info">
+    <a class="close" data-dismiss="alert">&times;</a>
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endwith %}
 
     {% block main_content %} {% endblock %}
 
