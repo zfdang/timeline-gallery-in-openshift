@@ -8,17 +8,13 @@ It's using flask as web framework, sqlalchemy as ORM to MySQL, jQuery and other 
 Demo
 ======================
 
-http://demo.zfdang.com/
+http://album-joylin.rhcloud.com/
 
 
-Instruction to deloy in Openshift
+Deloy Instruction to OpenShift
 ======================
 
-This git repository helps you get up and running quickly with a Timeline Gallery installation
-on OpenShift.  The backend database is MySQL and the database name is the 
-same as your application name (using $_ENV['OPENSHIFT_APP_NAME']).  You can name
-your application whatever you want.  However, the name of the database will always
-match the application so you might have to update .openshift/action_hooks/build.
+This git repository helps you get up and running quickly with a Timeline Gallery installation on OpenShift. The backend database is MySQL and the database name is the same as your application name (using $_ENV['OPENSHIFT_APP_NAME']).
 
 
 Running on OpenShift
@@ -26,15 +22,15 @@ Running on OpenShift
 
 Create an account at http://openshift.redhat.com/
 
-Create a python application (you can call your application whatever you want)
+Create a python application (you can call your application whatever you want, 'gallery' here as an example)
 
-    rhc app create -a gallery -t python
+    rhc app create -a gallery -t python-2.6
 
 Add MySQL support to your application
 
     rhc cartridge add -a gallery -c mysql-5.1
 
-Add this upstream Wordpress repo
+Add this upstream "Timeline Gallery" repo
 
     cd gallery 
     git remote add upstream -m master git://github.com/zfdang/timeline-gallery-in-openshift.git
@@ -43,6 +39,10 @@ Add this upstream Wordpress repo
 Then push the repo upstream
 
     git push
+
+The last step is to initialize database settings. The following URL will create tables, and add default admin account. (the URL only works for the first time, so it won't override your settings on the second run)
+
+    http://gallery-$yournamespace.rhcloud.com/admin/init
 
 That's it, you can now checkout your application at:
 
