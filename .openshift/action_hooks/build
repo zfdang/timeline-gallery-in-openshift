@@ -3,3 +3,34 @@
 # available.  Otherwise it will execute while your application is stopped
 # before the deploy step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
+
+# download exiv2, and install it into OPENSHIFT_DATA_DIR/exiv2
+EXIV2_VERSION=0.23
+EXIV2_BINARY=${OPENSHIFT_DATA_DIR}exiv2/bin/exiv2
+
+if [ ! -d ${OPENSHIFT_DATA_DIR}exiv2 ]; then
+  echo "create ${OPENSHIFT_DATA_DIR}exiv2"
+  mkdir ${OPENSHIFT_DATA_DIR}exiv2
+
+  echo "download exiv2 to temp folder..."
+  cd ${OPENSHIFT_TMP_DIR}
+  if [ ! -d exiv2-${EXIV2_VERSION} ]; then
+    curl -L -o exiv2-${EXIV2_VERSION}.tar.gz http://www.exiv2.org/exiv2-${EXIV2_VERSION}.tar.gz
+    tar -xvzf exiv2-${EXIV2_VERSION}.tar.gz
+  fi
+
+  echo "Start compiling exiv2 ${EXIV2_VERSION} on Openshift (i'll take a while)"
+  cd exiv2-${EXIV2_VERSION}
+  sh configure --prefix=${OPENSHIFT_DATA_DIR}exiv2 --disable-shared --enable-static
+  make
+  make install 
+
+  if [ -e "${EXIV2_BINARY}" ]
+  then
+     echo "exiv2 was installed successfully: ${EXIV2_BINARY}"
+  else
+     echo "failed to install exiv2, you have to install exiv2 into ${EXIV2_BINARY} manually"
+  fi
+else
+  echo "${OPENSHIFT_DATA_DIR}exiv2 exists already, skip the installation step"
+fi

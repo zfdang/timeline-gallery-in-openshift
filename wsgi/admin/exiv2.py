@@ -5,7 +5,9 @@ from flask import current_app
 
 EXIV2_CMD = None
 if 'OPENSHIFT_APP_UUID' in os.environ:
-    EXIV2_CMD = os.path.join(os.environ['OPENSHIFT_DATA_DIR'], "installs", "bin", "exiv2")
+    # exiv2 was installed by .openshift\action_hooks\build script
+    # if the script can't work correctly, you should manually install it in ssh
+    EXIV2_CMD = os.path.join(os.environ['OPENSHIFT_DATA_DIR'], "exiv2", "bin", "exiv2")
 else:
     EXIV2_CMD = "D:\workspaces\joylin_openshift\exiv2-0.23-win\exiv2.exe"
 
