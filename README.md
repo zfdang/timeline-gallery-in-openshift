@@ -40,10 +40,6 @@ Then push the repo upstream
 
     git push
 
-The last step is to initialize database settings. The following URL will create tables, and add default admin account. (the URL only works for the first time, so it won't override your settings on the second run)
-
-    http://gallery-$yournamespace.rhcloud.com/admin/init
-
 That's it, you can now checkout your application at:
 
     http://gallery-$yournamespace.rhcloud.com

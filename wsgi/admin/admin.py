@@ -19,10 +19,6 @@ def index():
 def init():
     messages = []
 
-    # clear login information in session
-    session.pop('username', None)
-    messages.append("session cleared!")
-
     # init database
     init_db()  # this operation won't create tables if they exist
 
@@ -34,14 +30,14 @@ def init():
         db_session.commit()
         messages.append("user 'admin' added!")
     else:
-        messages.append("user 'admin' exists!")
+        messages.append("valid user exists, skip user init.")
 
-    # init upload folder
-    if not os.path.exists(current_app.config['UPLOAD_FOLDER']):
-        os.mkdir(current_app.config['UPLOAD_FOLDER'])
-        messages.append("upload folder created!")
-    else:
-        messages.append("upload folder existed!")
+    # init upload folder ==> moved to action_hooks/build
+    # if not os.path.exists(current_app.config['UPLOAD_FOLDER']):
+    #     os.mkdir(current_app.config['UPLOAD_FOLDER'])
+    #     messages.append("upload folder created!")
+    # else:
+    #     messages.append("upload folder existed!")
 
     for message in messages:
         flash(message)

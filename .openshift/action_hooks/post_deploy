@@ -2,3 +2,13 @@
 # This is a simple post deploy hook executed after your application 
 # is deployed and started.  This script gets executed directly, so 
 # it could be python, php, ruby, etc.
+
+# call init method to initialize database and account
+if [ ! -d ${OPENSHIFT_DATA_DIR}init ]; then
+  echo "Call http://${OPENSHIFT_APP_DNS}/admin/init to initialize db..."
+  mkdir ${OPENSHIFT_DATA_DIR}init
+  cd ${OPENSHIFT_DATA_DIR}init
+  curl -L -o init.html http://${OPENSHIFT_APP_DNS}/admin/init
+else
+  echo "${OPENSHIFT_DATA_DIR}init exists already."
+fi
