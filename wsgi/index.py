@@ -11,7 +11,8 @@ bp = Blueprint('index', __name__)
 
 @bp.route('/')
 def index():
-    return render_template('index.html')
+    photos_count = Photo.query.filter(Photo.visibility == True).count()
+    return render_template('index.html', photos_count=photos_count)
 
 
 @bp.route("timeline")
@@ -33,7 +34,7 @@ def timeline_json():
 
     # collect all photos
     tl = Timeline(headline, text, start_date)
-    photos = Photo.query.filter(Photo.visibility == True). all()
+    photos = Photo.query.filter(Photo.visibility == True).all()
     for photo in photos:
         dt = photo.start_date.replace("-", ",")
 
