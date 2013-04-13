@@ -11,7 +11,7 @@ bp = Blueprint('index', __name__)
 
 @bp.route('/')
 def index():
-    photos_count = Photo.query.filter(Photo.visibility == True).count()
+    photos_count = Photo.query.filter(Photo.visibility == True).count() - 1 
     return render_template('index.html', photos_count=photos_count)
 
 
