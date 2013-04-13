@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-01-24 09:53+0800\n"
+"POT-Creation-Date: 2013-04-13 15:14+0800\n"
 "PO-Revision-Date: 2012-12-28 15:35+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en_US <LL@li.org>\n"
@@ -35,11 +35,15 @@ msgstr "en"
 msgid "Search"
 msgstr ""
 
-#: templates/layout.html:32 templates/admin/index.html:13
+#: templates/layout.html:23
+msgid "First Page"
+msgstr ""
+
+#: templates/layout.html:33 templates/admin/index.html:13
 msgid "Admin"
 msgstr ""
 
-#: templates/layout.html:60 templates/admin/admin_layout.html:63
+#: templates/layout.html:61 templates/admin/admin_layout.html:63
 msgid "Powered by "
 msgstr ""
 
@@ -63,19 +67,11 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: templates/admin/login.html:11
-msgid "Default: 'admin'"
-msgstr ""
-
-#: templates/admin/login.html:15 templates/admin/users.html:21
+#: templates/admin/login.html:14 templates/admin/users.html:21
 msgid "Password"
 msgstr ""
 
-#: templates/admin/login.html:18
-msgid "Default: 'Password2012'"
-msgstr ""
-
-#: templates/admin/login.html:23
+#: templates/admin/login.html:21
 msgid "Login"
 msgstr ""
 
@@ -201,6 +197,9 @@ msgstr ""
 msgid "Enter password:"
 msgstr ""
 
-#~ msgid "Hello World"
+#~ msgid "Default: 'admin'"
+#~ msgstr ""
+
+#~ msgid "Default: 'Password2012'"
 #~ msgstr ""
 
