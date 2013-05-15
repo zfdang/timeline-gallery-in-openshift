@@ -9,6 +9,7 @@ from pagination import Pagination
 from uploads import get_saved_filename, get_noexif_filename, get_thumb_filename
 from exiv2 import get_image_exif, get_image_date
 import json
+from sqlalchemy import desc
 
 bp = Blueprint('photos', __name__)
 
@@ -19,7 +20,7 @@ bp = Blueprint('photos', __name__)
 def index(page):
     file_per_page = current_app.config.get('FILE_PER_PAGE', 10)
     photos_count = Photo.query.count()
-    photos = Photo.query.order_by(Photo.start_date).offset((page - 1) * file_per_page).limit(file_per_page)
+    photos = Photo.query.order_by(desc(Photo.start_date)).offset((page - 1) * file_per_page).limit(file_per_page)
     for photo in photos:
         photo.url = url_for(".show_photo", filename=photo.filename)
 
