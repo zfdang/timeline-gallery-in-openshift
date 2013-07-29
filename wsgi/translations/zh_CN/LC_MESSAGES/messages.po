@@ -29,7 +29,7 @@ msgstr "设置已更新！"
 
 #: templates/index.html:32
 msgid "timeline_lang"
-msgstr "zh-ch"
+msgstr "zh-cn"
 
 #: templates/layout.html:18 templates/admin/admin_layout.html:21
 msgid "Search"
