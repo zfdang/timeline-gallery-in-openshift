@@ -8,7 +8,7 @@ It's using flask as web framework, sqlalchemy as ORM to MySQL, jQuery and other 
 Demo
 ======================
 
-http://album-joylin.rhcloud.com/
+http://gallery.zfdang.com/
 
 
 Deloy Instruction to OpenShift
