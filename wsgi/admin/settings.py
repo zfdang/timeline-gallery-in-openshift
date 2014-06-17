@@ -4,7 +4,7 @@ from database import db_session
 from models import Setting
 from decorators import login_required
 from sqlalchemy import desc
-from flaskext.babel import gettext as _
+from flask.ext.babel import gettext as _
 
 bp = Blueprint('settings', __name__)
 

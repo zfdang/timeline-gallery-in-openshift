@@ -40,7 +40,7 @@ def favicon():
 
 
 # babel related settings
-from flaskext.babel import Babel
+from flask.ext.babel import Babel
 babel = Babel(app)  # use BABEL_DEFAULT_LOCALE from app.config
 
 

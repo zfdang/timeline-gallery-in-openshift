@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from flask import Blueprint, url_for, session, redirect, current_app
-from flaskext.babel import refresh
+from flask.ext.babel import refresh
 from urllib import quote_plus, unquote_plus
 
 # supported langs

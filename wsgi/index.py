@@ -4,7 +4,7 @@ from models import Photo, Setting
 from timeline import Timeline
 from sqlalchemy import desc
 import datetime
-from flaskext.babel import gettext as _
+from flask.ext.babel import gettext as _
 
 bp = Blueprint('index', __name__)
 
