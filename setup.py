@@ -9,4 +9,4 @@ setup(name='www.zfdang.com',
       # install_requires=['Django>=1.3'],
       # http://pypi.python.org/pypi
       install_requires=['flask', 'sqlalchemy', 'flask-babel', 'simple-pbkdf2', 'PIL'],
-     )
+)
