@@ -3,3 +3,7 @@
 # available.  Otherwise it will execute while your application is stopped
 # before the build step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
+# For PIL:
+ln -sf /usr/lib64/libz.so $VIRTUAL_ENV/lib/
+ln -sf /usr/lib64/libfreetype.so $VIRTUAL_ENV/lib/
+ln -sf /usr/lib64/libjpeg.so $VIRTUAL_ENV/lib/
