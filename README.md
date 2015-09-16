@@ -40,9 +40,9 @@ Then push the repo upstream
 
     git push
 
-That's it, you can now checkout your application at:
+That's it, you can now init your application at:
 
-    http://gallery-$yournamespace.rhcloud.com
+    http://gallery-$yournamespace.rhcloud.com/admin/init
     
 Default Credentials
 -------------------
