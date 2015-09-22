@@ -42,7 +42,8 @@ Then push the repo upstream
 
 That's it, you can now init your application at:
 
-    http://gallery-$yournamespace.rhcloud.com/admin/init
+    http://gallery-$yournamespace.rhcloud.com/
+    (http://gallery-$yournamespace.rhcloud.com/admin/init) this URL should be called by post-deploy script already. so you don't have to call it manually.
     
 Default Credentials
 -------------------
