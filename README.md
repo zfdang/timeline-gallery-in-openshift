@@ -24,11 +24,11 @@ Create an account at http://openshift.redhat.com/
 
 Create a python application (you can call your application whatever you want, 'gallery' here as an example)
 
-    rhc app create -a gallery -t python-2.6
+    rhc app create -a gallery -t python-2.7
 
 Add MySQL support to your application
 
-    rhc cartridge add -a gallery -c mysql-5.1
+    rhc cartridge add -a gallery -c mysql-5.5
 
 Add this upstream "Timeline Gallery" repo
 
